@@ -3,19 +3,28 @@ project:
   output-dir: docs
 
 website:
-  title: "marie_quarto"
+  title: "Quarto Explorations"
   navbar:
     background: primary
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: Lyra
+      - href: recipes.qmd
+        text: Recipes
+      - href: lterdatasampler.qmd
+        text: LTER Data Sampler
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
+      dark: slate
     css: styles.css
     toc: true
+
+editor: visual
 
 
 

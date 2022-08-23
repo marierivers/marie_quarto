@@ -1,16 +1,51 @@
 [
   {
+    "objectID": "lterdatasampler.html",
+    "href": "lterdatasampler.html",
+    "title": "LTER Data Sampler",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\nlibrary(lterdatasampler)\n\ntrout_salamander <- and_vertebrates %>% \n  drop_na(species) %>% \n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n  \n#facet_grid(section ~ species, labeller = +as_labeller(c(section_names, species_names)))\n\n\n\n\n\nFigure 1: Length and size of trout and salamander based on stream location."
+  },
+  {
+    "objectID": "recipes.html",
+    "href": "recipes.html",
+    "title": "Recipes",
+    "section": "",
+    "text": "Kale Quinoa Salad - from Smitten Kitchen\n\ntest table\n\n\nCol1\nCol2\nCol3\n\n\n\n\nrow 1\nxxx\nyyy\n\n\nrow 2\nzzz\n???\n\n\nrow 3\naaa\nbbb"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "marie_quarto",
+    "title": "Quarto Exploration",
     "section": "",
-    "text": "To learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "My dog is Lyra\nI talk about her a lot\n\n\n\nand…\nmight talk about ice cream\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Lyra",
     "section": "",
-    "text": "About this site"
+    "text": "Lyra is a 2 year old Labrabor Retriever"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Lyra",
+    "section": "Education",
+    "text": "Education\n\npuppy kindergarden\nobedience 1\nobedience 2\nadvanced obedience\nintro to agility\ncanine good citizen"
+  },
+  {
+    "objectID": "about.html#certifications",
+    "href": "about.html#certifications",
+    "title": "Lyra",
+    "section": "Certifications",
+    "text": "Certifications\nCertified Very Good Girl and Canine Good Citizen"
+  },
+  {
+    "objectID": "about.html#favorite-activities",
+    "href": "about.html#favorite-activities",
+    "title": "Lyra",
+    "section": "Favorite Activities",
+    "text": "Favorite Activities\n\nswimming\nfetch\nplaying with friends\nrunning up and down the beach\nsnack time\nsnuggling"
   }
 ]

@@ -1,0 +1,34 @@
+---
+title: "LTER Data Sampler"
+editor: visual
+---
+
+```{r}
+#| label: fig-trout-salamander-size
+#| fig-cap: Length and size of trout and salamander based on stream location.
+#| warning: false
+#| code-fold: true
+
+library(tidyverse)
+library(lterdatasampler)
+
+trout_salamander <- and_vertebrates %>% 
+  drop_na(species) %>% 
+  filter(species != 'Cascade torrent salamander')
+
+species_names <- c('Cutthroat trout' = 'cutthroat trout',
+                   'Coastal giant salamander' = 'coastal giant salamander')
+
+section_names <- c('CC' = 'clear cut forest',
+                   'OG' = 'old growth coniferous forest')
+
+
+ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
+  geom_point(aes(color = species), show.legend = FALSE) +
+  labs(x = "Length (mm)",
+       y = "Weight (g)",
+       color = "Species") +
+  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
+  
+#facet_grid(section ~ species, labeller = +as_labeller(c(section_names, species_names)))
+```

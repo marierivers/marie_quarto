@@ -1,5 +1,29 @@
 ---
-title: "About"
+title: "Lyra"
+about:
+  template: trestles
+  image: lyra.jpg
 ---
 
-About this site
+Lyra is a 2 year old Labrabor Retriever
+
+## Education
+
+- puppy kindergarden
+- obedience 1
+- obedience 2
+- advanced obedience
+- intro to agility
+- canine good citizen
+
+## Certifications
+
+Certified Very Good Girl and Canine Good Citizen
+
+## Favorite Activities
+- swimming
+- fetch
+- playing with friends
+- running up and down the beach
+- snack time
+- snuggling 

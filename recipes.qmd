@@ -1,0 +1,16 @@
+---
+title: "Recipes"
+editor: visual
+---
+
+Putting my go to recipes in one spot...
+
+[Kale Quinoa Salad](https://smittenkitchen.com/2014/03/kale-and-quinoa-salad-with-ricotta-salata/ "delicious and nutritious") - from Smitten Kitchen
+
+| Col1  | Col2 | Col3 |
+|-------|:----:|:----:|
+| row 1 | xxx  | yyy  |
+| row 2 | zzz  | ???  |
+| row 3 | aaa  | bbb  |
+
+: test table

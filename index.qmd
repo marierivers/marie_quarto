@@ -1,7 +1,23 @@
 ---
-title: "marie_quarto"
+title: "Quarto Exploration"
+image: cloudy_sunset.jpg
+about:
+  template: marquee
+  image-shape: rounded
+  #image-width: 15em
 ---
 
-This is a Quarto website.
+# This is a Quarto website.
+using this space to try things out
+
+---
+
+# My dog is Lyra
+I talk about her a lot
+
+---
+
+# and...
+might talk about ice cream
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
