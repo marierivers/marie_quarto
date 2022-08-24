@@ -1,0 +1,68 @@
+---
+title: "Lyra"
+about:
+  id: lyra-heading
+  template: trestles
+  image: lyra.jpg
+description: 2 year old Labrador Retriever
+---
+
+### content above formated page content from `trestles` template
+
+::: {#lyra-heading}
+## Education
+
+-   puppy kindergarden
+-   obedience 1
+-   obedience 2
+-   advanced obedience
+-   intro to agility
+-   canine good citizen
+
+## Certifications
+
+-   Canine Good Citizen
+-   Certified Very Good Girl and
+
+## Favorite Activities
+
+-   swimming
+-   fetch
+-   playing with friends
+-   running up and down the beach
+-   snack time
+-   snuggling
+-   waiting patiently while I load the dishwasher
+
+------------------------------------------------------------------------
+:::
+
+### content below template formated page content from `trestles` template
+
+### Figures with Quarto
+
+::: {#fig-sup layout-nrow=2} 
+![Paddle boarding on a lake](images/lyra_lake_paddleboard.jpg){#fig-lake_sup}
+
+![Paddle boarding on the ocean](images/lyra_ocean_paddleboard.jpg){#fig-ocean_sup}
+
+![Playing in the snow](images/lyra_snow.jpg){#fig-lyra-snow}
+
+![Smelling some roses](images/lyra_rose_garden.jpg){#fig-lyra-roses}
+
+Lyra is always ready for an adventure
+:::
+
+:::callout-note
+## Note
+With figure layouts, it is important to have a blank line in your code between each picture
+:::
+
+:::{#fig-friends}
+![](images/lyra_and_friends.jpg){width="375"}
+
+Lyra with her friends
+:::
+
+Notes: this pages tries out the `trestles` template and figure arrangements
+

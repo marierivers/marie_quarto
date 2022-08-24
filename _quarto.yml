@@ -9,7 +9,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
+      - href: lyra.qmd
         text: Lyra
       - href: recipes.qmd
         text: Recipes
