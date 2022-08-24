@@ -3,6 +3,12 @@ title: "LTER Data Sampler"
 editor: visual
 ---
 
+Sample Code from the [`lterdatasampler`](https://lter.github.io/lterdatasampler/index.html) package
+
+# Cutthroat trout and salamander
+
+length and weights in Mack Creek, Andrews Forest LTER
+
 ```{r}
 #| label: fig-trout-salamander-size
 #| fig-cap: Length and size of trout and salamander based on stream location.
@@ -32,3 +38,7 @@ ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
   
 #facet_grid(section ~ species, labeller = +as_labeller(c(section_names, species_names)))
 ```
+
+# Citation
+
+Horst A, Brun J (2022). lterdatasampler: Educational dataset examples from the Long Term Ecological Research program. R package version 0.1.0, <https://github.com/lter/lterdatasampler>.
