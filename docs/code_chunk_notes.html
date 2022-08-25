@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.243">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Quarto Explorations - LTER Data Sampler</title>
+  <title>Quarto Explorations - Code Chunk Notes</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@
     <a class="nav-link" href="./recipes.html">Recipes</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lterdatasampler.html" aria-current="page">LTER Data Sampler</a>
+    <a class="nav-link" href="./lterdatasampler.html">LTER Data Sampler</a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -157,130 +157,39 @@
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#cutthroat-trout-and-salamander" id="toc-cutthroat-trout-and-salamander" class="nav-link active" data-scroll-target="#cutthroat-trout-and-salamander">Cutthroat trout and salamander</a></li>
-<li><a href="#now-to-try-tabset-panels" id="toc-now-to-try-tabset-panels" class="nav-link" data-scroll-target="#now-to-try-tabset-panels">now to try tabset panels</a></li>
-<li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
-</ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7">LTER Data Sampler</h1></div></header>
-
-<p>Sample Code from the <a href="https://lter.github.io/lterdatasampler/index.html"><code>lterdatasampler</code></a> package</p>
-<section id="cutthroat-trout-and-salamander" class="level1">
-<h1>Cutthroat trout and salamander</h1>
-<p>length and weights in Mack Creek, Andrews Forest LTER</p>
+<div class="quarto-title"><h1 class="title display-7">Code Chunk Notes</h1></div></header>
+<p>You can add options to executable code like this</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lterdatasampler)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>trout_salamander <span class="ot">&lt;-</span> and_vertebrates <span class="sc">%&gt;%</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">'Cascade torrent salamander'</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>species_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Cutthroat trout'</span> <span class="ot">=</span> <span class="st">'cutthroat trout'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Coastal giant salamander'</span> <span class="ot">=</span> <span class="st">'coastal giant salamander'</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>section_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'CC'</span> <span class="ot">=</span> <span class="st">'clear cut forest'</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'OG'</span> <span class="ot">=</span> <span class="st">'old growth coniferous forest'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trout_salamander, <span class="fu">aes</span>(<span class="at">x =</span> length_1_mm, <span class="at">y =</span> weight_g)) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length (mm)"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(section <span class="sc">~</span> species, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">section =</span> section_names, <span class="at">species =</span> species_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-trout-salamander-size" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-carmiles" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="lterdatasampler_files/figure-html/fig-trout-salamander-size-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Length and size of trout and salamander based on stream location.</figcaption><p></p>
+<p><img src="code_chunk_notes_files/figure-html/fig-carmiles-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: car gas mileage</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Now for some Python</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_py <span class="op">=</span> pd.read_csv(<span class="st">'data/and_vertebrates.csv'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   year  sitecode section reach  ...  weight_g  clip  sampledate  notes
-0  1987  MACKCC-L      CC     L  ...      1.75  NONE  1987-10-07    NaN
-1  1987  MACKCC-L      CC     L  ...      1.95  NONE  1987-10-07    NaN
-2  1987  MACKCC-L      CC     L  ...      5.60  NONE  1987-10-07    NaN
-3  1987  MACKCC-L      CC     L  ...      2.15  NONE  1987-10-07    NaN
-4  1987  MACKCC-L      CC     L  ...      6.90  NONE  1987-10-07    NaN
-
-[5 rows x 16 columns]</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py <span class="op">=</span> trout_salamander_py[trout_salamander_py[<span class="st">'species'</span>].isin([<span class="st">'Cutthroat trout'</span>, <span class="st">'Coastal giant salamander'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.plot(x<span class="op">=</span><span class="st">'length_1_mm'</span>, y<span class="op">=</span><span class="st">'weight_g'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="lterdatasampler_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="now-to-try-tabset-panels" class="level1">
-<h1>now to try tabset panels</h1>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-1-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trout_salamander, <span class="fu">aes</span>(<span class="at">x =</span> length_1_mm, <span class="at">y =</span> weight_g)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length (mm)"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(section <span class="sc">~</span> species, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">section =</span> section_names, <span class="at">species =</span> species_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="lterdatasampler_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py <span class="op">=</span> trout_salamander_py[trout_salamander_py[<span class="st">'species'</span>].isin([<span class="st">'Cutthroat trout'</span>, <span class="st">'Coastal giant salamander'</span>])]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.plot(x<span class="op">=</span><span class="st">'length_1_mm'</span>, y<span class="op">=</span><span class="st">'weight_g'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="lterdatasampler_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="citation" class="level1">
-<h1>Citation</h1>
-<p>Horst A, Brun J (2022). lterdatasampler: Educational dataset examples from the Long Term Ecological Research program. R package version 0.1.0, <a href="https://github.com/lter/lterdatasampler" class="uri">https://github.com/lter/lterdatasampler</a>.</p>
+<p>This is an awesome graph <a href="#fig-carmiles">Figure&nbsp;1</a></p>
 
 
 
-</section>
 </main> <!-- /main -->
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

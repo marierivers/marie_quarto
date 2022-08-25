@@ -35,9 +35,52 @@ ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
        y = "Weight (g)",
        color = "Species") +
   facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
-  
-#facet_grid(section ~ species, labeller = +as_labeller(c(section_names, species_names)))
 ```
+Now for some Python
+
+```{python}
+#| code-fold: true
+import pandas as pd
+
+trout_salamander_py = pd.read_csv('data/and_vertebrates.csv')
+trout_salamander_py.head()
+```
+```{python}
+trout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]
+```
+
+```{python}
+import matplotlib.pyplot as plt
+trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
+plt.show()
+```
+
+# now to try tabset panels
+:::{.panel-tabset}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
+  geom_point(aes(color = species), show.legend = FALSE) +
+  labs(x = "Length (mm)",
+       y = "Weight (g)",
+       color = "Species") +
+  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
+```
+
+## Python
+```{python}
+trout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]
+
+import matplotlib.pyplot as plt
+trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
+plt.show()
+```
+
+:::
+
+
 
 # Citation
 

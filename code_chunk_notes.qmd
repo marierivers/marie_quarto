@@ -1,0 +1,31 @@
+---
+title: "Code Chunk Notes"
+editor: visual
+---
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: fig-carmiles
+#| fig-cap: "car gas mileage"
+#| 
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+
+This is an awesome graph @fig-carmiles

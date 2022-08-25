@@ -1,10 +1,17 @@
 [
   {
+    "objectID": "code_chunk_notes.html",
+    "href": "code_chunk_notes.html",
+    "title": "Code Chunk Notes",
+    "section": "",
+    "text": "[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed).\n\n\n\n\nggplot(data = mtcars, aes(x = wt, y = mpg)) +\n  geom_point()\n\n\n\n\nFigure 1: car gas mileage\n\n\n\n\nThis is an awesome graph Figure 1"
+  },
+  {
     "objectID": "lterdatasampler.html",
     "href": "lterdatasampler.html",
     "title": "LTER Data Sampler",
     "section": "",
-    "text": "Cutthroat trout and salamander\nlength and weights in Mack Creek, Andrews Forest LTER\n\n\nCode\nlibrary(tidyverse)\nlibrary(lterdatasampler)\n\ntrout_salamander <- and_vertebrates %>% \n  drop_na(species) %>% \n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n  \n#facet_grid(section ~ species, labeller = +as_labeller(c(section_names, species_names)))\n\n\n\n\n\nFigure 1: Length and size of trout and salamander based on stream location.\n\n\n\n\n\n\nCitation\nHorst A, Brun J (2022). lterdatasampler: Educational dataset examples from the Long Term Ecological Research program. R package version 0.1.0, https://github.com/lter/lterdatasampler."
+    "text": "Cutthroat trout and salamander\nlength and weights in Mack Creek, Andrews Forest LTER\n\n\nCode\nlibrary(tidyverse)\nlibrary(lterdatasampler)\n\ntrout_salamander <- and_vertebrates %>% \n  drop_na(species) %>% \n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n\n\n\n\n\nFigure 1: Length and size of trout and salamander based on stream location.\n\n\n\n\nNow for some Python\n\n\nCode\nimport pandas as pd\n\ntrout_salamander_py = pd.read_csv('data/and_vertebrates.csv')\ntrout_salamander_py.head()\n\n\n   year  sitecode section reach  ...  weight_g  clip  sampledate  notes\n0  1987  MACKCC-L      CC     L  ...      1.75  NONE  1987-10-07    NaN\n1  1987  MACKCC-L      CC     L  ...      1.95  NONE  1987-10-07    NaN\n2  1987  MACKCC-L      CC     L  ...      5.60  NONE  1987-10-07    NaN\n3  1987  MACKCC-L      CC     L  ...      2.15  NONE  1987-10-07    NaN\n4  1987  MACKCC-L      CC     L  ...      6.90  NONE  1987-10-07    NaN\n\n[5 rows x 16 columns]\n\n\n\ntrout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]\n\n\nimport matplotlib.pyplot as plt\ntrout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')\nplt.show()\n\n\n\n\n\n\nnow to try tabset panels\n\nRPython\n\n\n\nggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n\n\n\n\n\n\n\ntrout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]\n\nimport matplotlib.pyplot as plt\ntrout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')\nplt.show()\n\n\n\n\n\n\n\n\n\nCitation\nHorst A, Brun J (2022). lterdatasampler: Educational dataset examples from the Long Term Ecological Research program. R package version 0.1.0, https://github.com/lter/lterdatasampler."
   },
   {
     "objectID": "recipes.html",
@@ -12,6 +19,13 @@
     "title": "Recipes",
     "section": "",
     "text": "Kale Quinoa Salad - from Smitten Kitchen\n\ntest table\n\n\nCol1\nCol2\nCol3\n\n\n\n\nrow 1\nxxx\nyyy\n\n\nrow 2\nzzz\n???\n\n\nrow 3\naaa\nbbb"
+  },
+  {
+    "objectID": "yaml_notes.html",
+    "href": "yaml_notes.html",
+    "title": "yaml_notes",
+    "section": "",
+    "text": "title: “quarto_example” author: Marie date: 2022-04-13 format: html editor: visual execute: warning: false message: false"
   },
   {
     "objectID": "index.html",
