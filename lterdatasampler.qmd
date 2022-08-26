@@ -36,6 +36,7 @@ ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
        color = "Species") +
   facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
 ```
+
 Now for some Python
 
 ```{python}
@@ -45,6 +46,7 @@ import pandas as pd
 trout_salamander_py = pd.read_csv('data/and_vertebrates.csv')
 trout_salamander_py.head()
 ```
+
 ```{python}
 trout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]
 ```
@@ -56,8 +58,34 @@ plt.show()
 ```
 
 # now to try tabset panels
-:::{.panel-tabset}
-## R
+
+::: callout-tip
+## Tip
+
+Use font awesome to add icons to the tab headers. To improve accessibility, use `a11y = "sem"` to get the icon title when you hover over it. Use `a11y = "deco"` for decorative icons and `a11y = "sem"` for semantic icons.
+
+```markdown
+::: panel-tabset
+## 'r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+## 'r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+:::
+```
+
+Does anyone know how to show the code above but with an actual backtick at the beginning of the lines?
+
+```{markdown}
+#| echo: fenced
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+:::
+```
+:::
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
 
 ```{r}
 #| warning: false
@@ -69,7 +97,8 @@ ggplot(data = trout_salamander, aes(x = length_1_mm, y = weight_g)) +
   facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
 ```
 
-## Python
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
 ```{python}
 trout_salamander_py = trout_salamander_py[trout_salamander_py['species'].isin(['Cutthroat trout', 'Coastal giant salamander'])]
 
@@ -77,10 +106,7 @@ import matplotlib.pyplot as plt
 trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
 plt.show()
 ```
-
 :::
-
-
 
 # Citation
 

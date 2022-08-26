@@ -4,7 +4,7 @@ about:
   id: lyra-heading
   template: trestles
   image: lyra.jpg
-description: 2 year old Labrador Retriever
+description: 3 year old Labrador Retriever
 ---
 
 ### content above formated page content from `trestles` template
@@ -41,7 +41,7 @@ description: 2 year old Labrador Retriever
 
 ### Figures with Quarto
 
-::: {#fig-sup layout-nrow=2} 
+::: {#fig-sup layout-nrow="2"}
 ![Paddle boarding on a lake](images/lyra_lake_paddleboard.jpg){#fig-lake_sup}
 
 ![Paddle boarding on the ocean](images/lyra_ocean_paddleboard.jpg){#fig-ocean_sup}
@@ -53,16 +53,16 @@ description: 2 year old Labrador Retriever
 Lyra is always ready for an adventure
 :::
 
-:::callout-note
+::: callout-note
 ## Note
+
 With figure layouts, it is important to have a blank line in your code between each picture
 :::
 
-:::{#fig-friends}
+::: {#fig-friends}
 ![](images/lyra_and_friends.jpg){width="375"}
 
 Lyra with her friends
 :::
 
 Notes: this pages tries out the `trestles` template and figure arrangements
-
