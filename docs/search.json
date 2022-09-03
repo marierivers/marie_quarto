@@ -21,6 +21,62 @@
     "text": "Kale Quinoa Salad - from Smitten Kitchen\n\ntest table\n\n\nCol1\nCol2\nCol3\n\n\n\n\nrow 1\nxxx\nyyy\n\n\nrow 2\nzzz\n???\n\n\nrow 3\naaa\nbbb"
   },
   {
+    "objectID": "data_wrangling.html",
+    "href": "data_wrangling.html",
+    "title": "Data Wrangling with R and Python",
+    "section": "",
+    "text": "The purpose of this document is to illustrate common data wrangling commands with R and Python. These examples use data from the lterdatasampler package."
+  },
+  {
+    "objectID": "data_wrangling.html#head-and-tail",
+    "href": "data_wrangling.html#head-and-tail",
+    "title": "Data Wrangling with R and Python",
+    "section": "Head and Tail",
+    "text": "Head and Tail\nHead returns the first few rows of the data frame and tail returns the last rows. The integer in the examples below is optional and used to specify the number of rows returned. ::: {.cell .column-page}\nhead(trout_salamander_R, 5) # include an integrer is you want to specify the number of rows returned\n\n# A tibble: 5 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  1987 MACKCC-L CC      L         1       1 R                 1        NA\n2  1987 MACKCC-L CC      L         1       1 R                 2        NA\n3  1987 MACKCC-L CC      L         1       1 R                 3        NA\n4  1987 MACKCC-L CC      L         1       1 R                 4        NA\n5  1987 MACKCC-L CC      L         1       1 R                 5        NA\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\ntail(trout_salamander_R)\n\n# A tibble: 6 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  2019 MACKOG-U OG      U         2      16 C                21        NA\n2  2019 MACKOG-U OG      U         2      16 C                22        NA\n3  2019 MACKOG-U OG      U         2      16 C                23   1043503\n4  2019 MACKOG-U OG      U         2      16 C                24   1043547\n5  2019 MACKOG-U OG      U         2      16 C                25   1043583\n6  2019 MACKOG-U OG      U         2      16 C                26   1043500\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\n::: :::{.column-body-outset} ::: {.cell .column-screen}\ntrout_salamander_py.head(5) # include an integrer is you want to specify the number of rows returned\n\n   year  sitecode section reach  ...  weight_g  clip  sampledate  notes\n0  1987  MACKCC-L      CC     L  ...      1.75  NONE  1987-10-07    NaN\n1  1987  MACKCC-L      CC     L  ...      1.95  NONE  1987-10-07    NaN\n2  1987  MACKCC-L      CC     L  ...      5.60  NONE  1987-10-07    NaN\n3  1987  MACKCC-L      CC     L  ...      2.15  NONE  1987-10-07    NaN\n4  1987  MACKCC-L      CC     L  ...      6.90  NONE  1987-10-07    NaN\n\n[5 rows x 16 columns]\n\ntrout_salamander_py.tail()\n\n       year  sitecode section reach  ...  weight_g  clip  sampledate        notes\n32204  2019  MACKOG-U      OG     U  ...       7.9  NONE  2019-09-05          NaN\n32205  2019  MACKOG-U      OG     U  ...       8.7  NONE  2019-09-05          NaN\n32206  2019  MACKOG-U      OG     U  ...       9.6  NONE  2019-09-05          NaN\n32207  2019  MACKOG-U      OG     U  ...      14.3  NONE  2019-09-05          NaN\n32208  2019  MACKOG-U      OG     U  ...      11.6  NONE  2019-09-05  Terrestrial\n\n[5 rows x 16 columns]\n\n::: :::"
+  },
+  {
+    "objectID": "data_wrangling.html#class-type",
+    "href": "data_wrangling.html#class-type",
+    "title": "Data Wrangling with R and Python",
+    "section": "Class / Type",
+    "text": "Class / Type\n\nclass(trout_salamander_R)\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\" \n\n\n\n#type(trout_salamander_py)"
+  },
+  {
+    "objectID": "data_wrangling.html#shape",
+    "href": "data_wrangling.html#shape",
+    "title": "Data Wrangling with R and Python",
+    "section": "Shape",
+    "text": "Shape\n\n\n\nHere R and Python both tell us that the dataframe has 32209 rows and 16 columns.\n\ndim(trout_salamander_R) # returns the number of rows and columns in a data frame\n\n[1] 32209    16\n\nnrow(trout_salamander_R)\n\n[1] 32209\n\nncol(trout_salamander_R)\n\n[1] 16\n\n\n\ntrout_salamander_py.shape\n\n(32209, 16)\n\ntrout_salamander_py.shape[0] # number of rows\n\n32209\n\ntrout_salamander_py.shape[1] # number of columns\n\n16"
+  },
+  {
+    "objectID": "data_wrangling.html#summary-describe",
+    "href": "data_wrangling.html#summary-describe",
+    "title": "Data Wrangling with R and Python",
+    "section": "Summary / Describe",
+    "text": "Summary / Describe\n\nsummary(trout_salamander_R)\n\n      year        sitecode           section             reach          \n Min.   :1987   Length:32209       Length:32209       Length:32209      \n 1st Qu.:1998   Class :character   Class :character   Class :character  \n Median :2006   Mode  :character   Mode  :character   Mode  :character  \n Mean   :2005                                                           \n 3rd Qu.:2012                                                           \n Max.   :2019                                                           \n                                                                        \n      pass          unitnum         unittype           vert_index    \n Min.   :1.000   Min.   : 1.000   Length:32209       Min.   :  1.00  \n 1st Qu.:1.000   1st Qu.: 3.000   Class :character   1st Qu.:  5.00  \n Median :1.000   Median : 7.000   Mode  :character   Median : 13.00  \n Mean   :1.224   Mean   : 7.696                      Mean   : 20.17  \n 3rd Qu.:1.000   3rd Qu.:11.000                      3rd Qu.: 27.00  \n Max.   :2.000   Max.   :20.000                      Max.   :147.00  \n                                                                     \n   pitnumber          species           length_1_mm      length_2_mm   \n Min.   :   62048   Length:32209       Min.   : 19.00   Min.   : 28.0  \n 1st Qu.:13713632   Class :character   1st Qu.: 47.00   1st Qu.: 77.0  \n Median :18570447   Mode  :character   Median : 63.00   Median : 98.0  \n Mean   :16286432                      Mean   : 73.83   Mean   :100.5  \n 3rd Qu.:19132429                      3rd Qu.: 97.00   3rd Qu.:119.0  \n Max.   :28180046                      Max.   :253.00   Max.   :284.0  \n NA's   :26574                         NA's   :17       NA's   :19649  \n    weight_g           clip             sampledate            notes          \n Min.   :  0.090   Length:32209       Min.   :1987-10-06   Length:32209      \n 1st Qu.:  1.510   Class :character   1st Qu.:1998-09-04   Class :character  \n Median :  6.050   Mode  :character   Median :2006-09-06   Mode  :character  \n Mean   :  8.903                      Mean   :2005-08-05                     \n 3rd Qu.: 11.660                      3rd Qu.:2012-09-05                     \n Max.   :134.590                      Max.   :2019-09-05                     \n NA's   :13268                                                               \n\n\n\ntrout_salamander_py.describe()\n\n               year          pass  ...   length_2_mm      weight_g\ncount  32209.000000  32209.000000  ...  12560.000000  18941.000000\nmean    2004.917601      1.223664  ...    100.485191      8.902859\nstd        8.572474      0.416706  ...     34.736955     10.676276\nmin     1987.000000      1.000000  ...     28.000000      0.090000\n25%     1998.000000      1.000000  ...     77.000000      1.510000\n50%     2006.000000      1.000000  ...     98.000000      6.050000\n75%     2012.000000      1.000000  ...    119.000000     11.660000\nmax     2019.000000      2.000000  ...    284.000000    134.590000\n\n[8 rows x 8 columns]\n\n\n\ntrout_salamander_py.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 32209 entries, 0 to 32208\nData columns (total 16 columns):\n #   Column       Non-Null Count  Dtype  \n---  ------       --------------  -----  \n 0   year         32209 non-null  int64  \n 1   sitecode     32209 non-null  object \n 2   section      32209 non-null  object \n 3   reach        32209 non-null  object \n 4   pass         32209 non-null  int64  \n 5   unitnum      32209 non-null  float64\n 6   unittype     31599 non-null  object \n 7   vert_index   32209 non-null  int64  \n 8   pitnumber    5635 non-null   float64\n 9   species      32206 non-null  object \n 10  length_1_mm  32192 non-null  float64\n 11  length_2_mm  12560 non-null  float64\n 12  weight_g     18941 non-null  float64\n 13  clip         32209 non-null  object \n 14  sampledate   32209 non-null  object \n 15  notes        3174 non-null   object \ndtypes: float64(5), int64(3), object(8)\nmemory usage: 3.9+ MB"
+  },
+  {
+    "objectID": "data_wrangling.html#variable-names",
+    "href": "data_wrangling.html#variable-names",
+    "title": "Data Wrangling with R and Python",
+    "section": "Variable Names",
+    "text": "Variable Names\n\nnames(trout_salamander_R) # returns column names of a data frame\n\n [1] \"year\"        \"sitecode\"    \"section\"     \"reach\"       \"pass\"       \n [6] \"unitnum\"     \"unittype\"    \"vert_index\"  \"pitnumber\"   \"species\"    \n[11] \"length_1_mm\" \"length_2_mm\" \"weight_g\"    \"clip\"        \"sampledate\" \n[16] \"notes\"      \n\n\n\ntrout_salamander_py.columns\n\nIndex(['year', 'sitecode', 'section', 'reach', 'pass', 'unitnum', 'unittype',\n       'vert_index', 'pitnumber', 'species', 'length_1_mm', 'length_2_mm',\n       'weight_g', 'clip', 'sampledate', 'notes'],\n      dtype='object')\n\n\nxxx unique class(penguins$species) # determine the data type of a given column"
+  },
+  {
+    "objectID": "data_wrangling.html#mean-median-mode",
+    "href": "data_wrangling.html#mean-median-mode",
+    "title": "Data Wrangling with R and Python",
+    "section": "mean, median, mode",
+    "text": "mean, median, mode"
+  },
+  {
+    "objectID": "data_wrangling.html#stats-of-a-group",
+    "href": "data_wrangling.html#stats-of-a-group",
+    "title": "Data Wrangling with R and Python",
+    "section": "stats of a group",
+    "text": "stats of a group"
+  },
+  {
     "objectID": "yaml_notes.html",
     "href": "yaml_notes.html",
     "title": "yaml_notes",
@@ -67,14 +123,14 @@
     "href": "lyra.html#education",
     "title": "Lyra",
     "section": "Education",
-    "text": "Education\n\npuppy kindergarden\nobedience 1\nobedience 2\nadvanced obedience\nintro to agility\ncanine good citizen"
+    "text": "Education\n\npuppy kindergarden\nobedience 1\nobedience 2\nadvanced obedience\nintro to agility"
   },
   {
     "objectID": "lyra.html#certifications",
     "href": "lyra.html#certifications",
     "title": "Lyra",
     "section": "Certifications",
-    "text": "Certifications\n\nCanine Good Citizen\nCertified Very Good Girl and"
+    "text": "Certifications\n\nCanine Good Citizen\nCertified Very Good Girl"
   },
   {
     "objectID": "lyra.html#favorite-activities",

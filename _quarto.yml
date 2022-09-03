@@ -15,6 +15,9 @@ website:
         text: Recipes
       - href: lterdatasampler.qmd
         text: LTER Data Sampler
+      - href: data_wrangling.qmd
+        text: Data Wrangling Examples
+      
 
 format:
   html:
