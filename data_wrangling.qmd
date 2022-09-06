@@ -1,12 +1,15 @@
 ---
 title: "Data Wrangling with R and Python"
 editor: visual
+toc-location: left
 ---
 
 The purpose of this document is to illustrate common data wrangling commands with R and Python. These examples use data from the [`lterdatasampler`](https://lter.github.io/lterdatasampler/index.html) package.
 
 # Basics - getting to know your data
+
 The `and_vertebrates` dataset includes trout and salamander observations from Mack Creek which is part of the Andrews Forest LTER.
+
 ```{r}
 #| warning: false
 library(tidyverse)
@@ -21,15 +24,18 @@ trout_salamander_py = pd.read_csv('data/and_vertebrates.csv')
 ```
 
 ## Head and Tail
+
 Head returns the first few rows of the data frame and tail returns the last rows. The integer in the examples below is optional and used to specify the number of rows returned.
+
 ```{r}
-#| column: page
+#| column: page-right
 head(trout_salamander_R, 5) # include an integrer is you want to specify the number of rows returned
 tail(trout_salamander_R)
 ```
-:::{.column-body-outset}
+
+::: column-body-outset
 ```{python}
-#| column: screen
+#| column: page-right
 trout_salamander_py.head(5) # include an integrer is you want to specify the number of rows returned
 
 trout_salamander_py.tail()
@@ -37,28 +43,38 @@ trout_salamander_py.tail()
 :::
 
 ## Class / Type
+
 ```{r}
 class(trout_salamander_R)
 ```
 
 ```{python}
-#type(trout_salamander_py)
+print(type(trout_salamander_py))
 ```
 
 ## Shape
+
 ```{r}
 #| echo: false
 trout_salamander_nrow <- nrow(trout_salamander_R)
 trout_salamander_ncol <- ncol(trout_salamander_R)
 ```
-Here R and Python both tell us that the dataframe has `r trout_salamander_nrow` rows and `r trout_salamander_ncol` columns.
+
+Here R and Python both tell us that the dataframe has `r format(round(trout_salamander_nrow), big.mark=',')` rows and `r trout_salamander_ncol` columns.
+
+::: callout-note
+## Note
+
+How to format inline code to include a comma for the thousands separator.
+
+    r format(round(trout_salamander_nrow), big.mark=',')
+:::
 
 ```{r}
 dim(trout_salamander_R) # returns the number of rows and columns in a data frame
 nrow(trout_salamander_R)
 ncol(trout_salamander_R)
 ```
-
 
 ```{python}
 trout_salamander_py.shape
@@ -67,6 +83,7 @@ trout_salamander_py.shape[1] # number of columns
 ```
 
 ## Summary / Describe
+
 ```{r}
 summary(trout_salamander_R)
 ```
@@ -74,10 +91,13 @@ summary(trout_salamander_R)
 ```{python}
 trout_salamander_py.describe()
 ```
+
 ```{python}
 trout_salamander_py.info()
 ```
+
 ## Variable Names
+
 ```{r}
 names(trout_salamander_R) # returns column names of a data frame
 ```
@@ -86,24 +106,47 @@ names(trout_salamander_R) # returns column names of a data frame
 trout_salamander_py.columns
 ```
 
-xxx
-unique
-class(penguins$species) # determine the data type of a given column
+::: grid
+::: g-col-6
+This column takes 1/2 of the page
 
-# Filtering
+`r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")`
 
-# Grouping
+```{r}
+names(trout_salamander_R) # returns column names of a data frame
+```
+:::
 
-# Statistics
-## mean, median, mode
-## stats of a group
+::: g-col-6
+This column takes 1/2 of the page
 
-# New Columns
+`r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")`
+
+```{python}
+trout_salamander_py.columns
+```
+:::
+:::
+
+# Unique
+
+Get the unique values from a specified column in a dataframe
+
+```{r}
+unique(trout_salamander_R$species)
+```
+
+```{python}
+trout_salamander_py.species.unique()
+```
 
 # Visualizations
+
+## R - ggplot
+
 ```{r}
 #| label: fig-trout_size
-#| fig-cap: "species length vs. weight"
+#| fig-cap: "figure in margin"
 #| column: margin
 #| warning: false
 
@@ -126,94 +169,332 @@ ggplot(data = trout_salamander_R, aes(x = length_1_mm, y = weight_g)) +
   facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
 ```
 
+## Python - matplotlib
+
 ```{python}
 #| label: fig-cap-margin
-#| fig-cap: "length vs. weight with Python"
+#| fig-cap: "caption in margin"
 #| cap-location: margin
 import matplotlib.pyplot as plt
 trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
 plt.show()
 ```
 
-# Putting it all together
+# Selecting Columns
 
-::: {.border}
-This content can be styled with a border
-:::
+Subset a datafame based on columns of interst
 
-::::: {#special .sidebar}
-
-::: {.warning}
-Here is a warning.
-:::
-
-More content.
-:::::
-
-> Blockquote
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
 
 ```{r}
-#| column: screen-inset-shaded
-
-library(leaflet)
-leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+#| column: page-right
+trout_salamander_R <- trout_salamander_R %>% 
+  select(year, sitecode, species, length_1_mm, weight_g)
+trout_salamander_R
 ```
 
-xxx 
-
-::: {.column-margin}
-![Lyra in front of flowers](images/lyra_flowers.jpg)
-:::
-
-::: {.column-margin}
-Some text for the margin
-:::
-
-# playing with layouts
-::: {.grid}
-
-::: {.g-col-4}
-This column takes 1/3 of the page
-:::
-
-::: {.g-col-8}
-This column takes 2/3 of the page
-:::
-
-:::
-
-xxx
-
-::: {.grid}
-
-::: {.g-col-6}
-This column takes 1/2 of the page
-
-`r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")`
-
-```{r}
-names(trout_salamander_R) # returns column names of a data frame
-```
-
-:::
-
-::: {.g-col-6}
-This column takes 1/2 of the page
-
-`r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")`
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
 
 ```{python}
-trout_salamander_py.columns
+#| column: page-right
+trout_salamander_py = trout_salamander_py[['year', 'sitecode', 'species', 'length_1_mm', 'weight_g']]
+trout_salamander_py
+```
+
+or...
+
+```{python}
+#| column: page-right
+cols_to_subset = ['year', 'sitecode', 'species', 'length_1_mm', 'weight_g']
+trout_salamander_py[cols_to_subset]
 ```
 :::
 
+# New Columns
+
+Convert the length variable from milimeters to inches and store these values in a new column
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+trout_salamander_R <- trout_salamander_R %>% 
+  mutate(length_1_in = length_1_mm / 25.4)
+trout_salamander_R
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_salamander_py['length_1_in'] = trout_salamander_py['length_1_mm'] / 25.4
+trout_salamander_py
+```
+:::
+
+# Sorting
+
+Order rows in a dataframe based on values in a specified column. Default is ascending order.
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+trout_salamander_R %>% 
+  arrange(length_1_mm)
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_salamander_py.sort_values("length_1_mm")
+```
+:::
+
+Sort values by descending order
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+trout_salamander_R %>% 
+  arrange(desc(length_1_mm))
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_salamander_py.sort_values("length_1_mm", ascending=False)
+```
+:::
+
+Sort values by multiple variables
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+trout_salamander_R %>% 
+  arrange(length_1_mm, weight_g, year)
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_salamander_py.sort_values(['length_1_mm', 'weight_g', 'year'])
+```
+:::
+
+# Filtering
+
+Create datasets of all cutthroat trout
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+trout_R <- trout_salamander_R %>% 
+  filter(species == 'Cutthroat trout')
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_py = trout_salamander_py[ (trout_salamander_py['species'] == 'Cutthroat trout') ]
+```
+:::
+
+Filter data based on values and logical arguments. This example filters for cutthroat trout that are longer than 86 mm.
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+large_trout_R <- trout_salamander_R %>% 
+  filter(species == 'Cutthroat trout') %>% 
+  filter(length_1_mm > 86)
+large_trout_R
+
+num_large_trout <- nrow(large_trout_R)
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+trout_salamander_py[ (trout_salamander_py['species'] == 'Cutthroat trout') & (trout_salamander_py['length_1_mm'] > 86) ]
+```
+:::
+
+There are `r format(round(num_large_trout), big.mark=',')` cutthroat trout longer than 86 mm in this dataset.
+
+# Summary Statistics
+
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+### Mean 
+Mean of specified column
+
+```{r}
+#| column: page-right
+mean(trout_R$weight_g, na.rm = TRUE)
+```
+
+Mean of multiple specified columns
+
+```{r}
+#| column: page-right
+# calculate statistic on multiple columns
+trout_R %>% 
+  summarise_at(vars('length_1_mm', 'weight_g'), mean, na.rm = TRUE)
+```
+
+Mean of all numeric columns
+
+```{r}
+#| column: page-right
+# calculate statistic on all numeric columns
+trout_R %>% 
+  summarise(across(where(is.numeric), mean, na.rm = TRUE))
+```
+
+### Median
+
+```{r}
+#| column: page-right
+median(trout_R$weight_g, na.rm = TRUE)
+```
+
+### Minimum
+
+```{r}
+#| column: page-right
+min(trout_R$weight_g, na.rm = TRUE)
+```
+
+### Maximum
+
+```{r}
+#| column: page-right
+max(trout_R$weight_g, na.rm = TRUE)
+```
+
+**Use var() to calculate the variance of a variable.**
+
+**Use sd() to calculate the standard deviation of a variable.**
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+### Mean
+Mean of specified column
+
+```{python}
+#| column: page-right
+trout_py['weight_g'].mean()
+```
+
+Mean of multiple specified columns
+
+```{python}
+#| column: page-right
+# calcuate statistic on multiple columns
+trout_py[['length_1_mm', 'weight_g']].mean()
+```
+
+Mean of all numeric columns
+
+```{python}
+#| column: page-right
+# calculate statistic on all numeric columns
+trout_py.mean()
+```
+
+### Median
+
+```{python}
+#| column: page-right
+trout_py['weight_g'].median()
+```
+
+### Minimum
+
+```{python}
+#| column: page-right
+trout_py['weight_g'].min()
+```
+
+### Maximum
+
+```{python}
+#| column: page-right
+trout_py['weight_g'].max()
+```
+
+**Use .var() to calculate the variance of a variable.**
+
+**Use .std() to calculate the standard deviation of a variable.** 
+
+:::
+
+# Grouping
+
+## stats of a group
+
+xxx...add images of each species
+
+# Test
+
+::: panel-tabset
+## Test 1
+
+### nmvkzlsnvbszfnv
+
+```{r}
+#| column: page-right
+2 + 2
+```
+
+## Test 2
+
+### vmkslbnsznb
+
+```{python}
+#| column: page-right
+1 + 1
+```
+:::
+
+xxxxx
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+
+```
 :::
 
 # Citation
 
 Horst A, Brun J (2022). lterdatasampler: Educational dataset examples from the Long Term Ecological Research program. R package version 0.1.0, <https://github.com/lter/lterdatasampler>.
-
-
-

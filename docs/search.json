@@ -32,21 +32,21 @@
     "href": "data_wrangling.html#head-and-tail",
     "title": "Data Wrangling with R and Python",
     "section": "Head and Tail",
-    "text": "Head and Tail\nHead returns the first few rows of the data frame and tail returns the last rows. The integer in the examples below is optional and used to specify the number of rows returned. ::: {.cell .column-page}\nhead(trout_salamander_R, 5) # include an integrer is you want to specify the number of rows returned\n\n# A tibble: 5 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  1987 MACKCC-L CC      L         1       1 R                 1        NA\n2  1987 MACKCC-L CC      L         1       1 R                 2        NA\n3  1987 MACKCC-L CC      L         1       1 R                 3        NA\n4  1987 MACKCC-L CC      L         1       1 R                 4        NA\n5  1987 MACKCC-L CC      L         1       1 R                 5        NA\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\ntail(trout_salamander_R)\n\n# A tibble: 6 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  2019 MACKOG-U OG      U         2      16 C                21        NA\n2  2019 MACKOG-U OG      U         2      16 C                22        NA\n3  2019 MACKOG-U OG      U         2      16 C                23   1043503\n4  2019 MACKOG-U OG      U         2      16 C                24   1043547\n5  2019 MACKOG-U OG      U         2      16 C                25   1043583\n6  2019 MACKOG-U OG      U         2      16 C                26   1043500\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\n::: :::{.column-body-outset} ::: {.cell .column-screen}\ntrout_salamander_py.head(5) # include an integrer is you want to specify the number of rows returned\n\n   year  sitecode section reach  ...  weight_g  clip  sampledate  notes\n0  1987  MACKCC-L      CC     L  ...      1.75  NONE  1987-10-07    NaN\n1  1987  MACKCC-L      CC     L  ...      1.95  NONE  1987-10-07    NaN\n2  1987  MACKCC-L      CC     L  ...      5.60  NONE  1987-10-07    NaN\n3  1987  MACKCC-L      CC     L  ...      2.15  NONE  1987-10-07    NaN\n4  1987  MACKCC-L      CC     L  ...      6.90  NONE  1987-10-07    NaN\n\n[5 rows x 16 columns]\n\ntrout_salamander_py.tail()\n\n       year  sitecode section reach  ...  weight_g  clip  sampledate        notes\n32204  2019  MACKOG-U      OG     U  ...       7.9  NONE  2019-09-05          NaN\n32205  2019  MACKOG-U      OG     U  ...       8.7  NONE  2019-09-05          NaN\n32206  2019  MACKOG-U      OG     U  ...       9.6  NONE  2019-09-05          NaN\n32207  2019  MACKOG-U      OG     U  ...      14.3  NONE  2019-09-05          NaN\n32208  2019  MACKOG-U      OG     U  ...      11.6  NONE  2019-09-05  Terrestrial\n\n[5 rows x 16 columns]\n\n::: :::"
+    "text": "Head and Tail\nHead returns the first few rows of the data frame and tail returns the last rows. The integer in the examples below is optional and used to specify the number of rows returned.\n\nhead(trout_salamander_R, 5) # include an integrer is you want to specify the number of rows returned\n\n# A tibble: 5 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  1987 MACKCC-L CC      L         1       1 R                 1        NA\n2  1987 MACKCC-L CC      L         1       1 R                 2        NA\n3  1987 MACKCC-L CC      L         1       1 R                 3        NA\n4  1987 MACKCC-L CC      L         1       1 R                 4        NA\n5  1987 MACKCC-L CC      L         1       1 R                 5        NA\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\ntail(trout_salamander_R)\n\n# A tibble: 6 × 16\n   year sitecode section reach  pass unitnum unittype vert_index pitnumber\n  <dbl> <chr>    <chr>   <chr> <dbl>   <dbl> <chr>         <dbl>     <dbl>\n1  2019 MACKOG-U OG      U         2      16 C                21        NA\n2  2019 MACKOG-U OG      U         2      16 C                22        NA\n3  2019 MACKOG-U OG      U         2      16 C                23   1043503\n4  2019 MACKOG-U OG      U         2      16 C                24   1043547\n5  2019 MACKOG-U OG      U         2      16 C                25   1043583\n6  2019 MACKOG-U OG      U         2      16 C                26   1043500\n# … with 7 more variables: species <chr>, length_1_mm <dbl>, length_2_mm <dbl>,\n#   weight_g <dbl>, clip <chr>, sampledate <date>, notes <chr>\n\n\n\n\ntrout_salamander_py.head(5) # include an integrer is you want to specify the number of rows returned\n\n   year  sitecode section reach  ...  weight_g  clip  sampledate  notes\n0  1987  MACKCC-L      CC     L  ...      1.75  NONE  1987-10-07    NaN\n1  1987  MACKCC-L      CC     L  ...      1.95  NONE  1987-10-07    NaN\n2  1987  MACKCC-L      CC     L  ...      5.60  NONE  1987-10-07    NaN\n3  1987  MACKCC-L      CC     L  ...      2.15  NONE  1987-10-07    NaN\n4  1987  MACKCC-L      CC     L  ...      6.90  NONE  1987-10-07    NaN\n\n[5 rows x 16 columns]\n\ntrout_salamander_py.tail()\n\n       year  sitecode section reach  ...  weight_g  clip  sampledate        notes\n32204  2019  MACKOG-U      OG     U  ...       7.9  NONE  2019-09-05          NaN\n32205  2019  MACKOG-U      OG     U  ...       8.7  NONE  2019-09-05          NaN\n32206  2019  MACKOG-U      OG     U  ...       9.6  NONE  2019-09-05          NaN\n32207  2019  MACKOG-U      OG     U  ...      14.3  NONE  2019-09-05          NaN\n32208  2019  MACKOG-U      OG     U  ...      11.6  NONE  2019-09-05  Terrestrial\n\n[5 rows x 16 columns]"
   },
   {
     "objectID": "data_wrangling.html#class-type",
     "href": "data_wrangling.html#class-type",
     "title": "Data Wrangling with R and Python",
     "section": "Class / Type",
-    "text": "Class / Type\n\nclass(trout_salamander_R)\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\" \n\n\n\n#type(trout_salamander_py)"
+    "text": "Class / Type\n\nclass(trout_salamander_R)\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\" \n\n\n\nprint(type(trout_salamander_py))\n\n<class 'pandas.core.frame.DataFrame'>"
   },
   {
     "objectID": "data_wrangling.html#shape",
     "href": "data_wrangling.html#shape",
     "title": "Data Wrangling with R and Python",
     "section": "Shape",
-    "text": "Shape\n\n\n\nHere R and Python both tell us that the dataframe has 32209 rows and 16 columns.\n\ndim(trout_salamander_R) # returns the number of rows and columns in a data frame\n\n[1] 32209    16\n\nnrow(trout_salamander_R)\n\n[1] 32209\n\nncol(trout_salamander_R)\n\n[1] 16\n\n\n\ntrout_salamander_py.shape\n\n(32209, 16)\n\ntrout_salamander_py.shape[0] # number of rows\n\n32209\n\ntrout_salamander_py.shape[1] # number of columns\n\n16"
+    "text": "Shape\n\n\n\nHere R and Python both tell us that the dataframe has 32,209 rows and 16 columns.\n\n\n\n\n\n\nNote\n\n\n\nHow to format inline code to include a comma for the thousands separator.\nr format(round(trout_salamander_nrow), big.mark=',')\n\n\n\ndim(trout_salamander_R) # returns the number of rows and columns in a data frame\n\n[1] 32209    16\n\nnrow(trout_salamander_R)\n\n[1] 32209\n\nncol(trout_salamander_R)\n\n[1] 16\n\n\n\ntrout_salamander_py.shape\n\n(32209, 16)\n\ntrout_salamander_py.shape[0] # number of rows\n\n32209\n\ntrout_salamander_py.shape[1] # number of columns\n\n16"
   },
   {
     "objectID": "data_wrangling.html#summary-describe",
@@ -60,21 +60,35 @@
     "href": "data_wrangling.html#variable-names",
     "title": "Data Wrangling with R and Python",
     "section": "Variable Names",
-    "text": "Variable Names\n\nnames(trout_salamander_R) # returns column names of a data frame\n\n [1] \"year\"        \"sitecode\"    \"section\"     \"reach\"       \"pass\"       \n [6] \"unitnum\"     \"unittype\"    \"vert_index\"  \"pitnumber\"   \"species\"    \n[11] \"length_1_mm\" \"length_2_mm\" \"weight_g\"    \"clip\"        \"sampledate\" \n[16] \"notes\"      \n\n\n\ntrout_salamander_py.columns\n\nIndex(['year', 'sitecode', 'section', 'reach', 'pass', 'unitnum', 'unittype',\n       'vert_index', 'pitnumber', 'species', 'length_1_mm', 'length_2_mm',\n       'weight_g', 'clip', 'sampledate', 'notes'],\n      dtype='object')\n\n\nxxx unique class(penguins$species) # determine the data type of a given column"
+    "text": "Variable Names\n\nnames(trout_salamander_R) # returns column names of a data frame\n\n [1] \"year\"        \"sitecode\"    \"section\"     \"reach\"       \"pass\"       \n [6] \"unitnum\"     \"unittype\"    \"vert_index\"  \"pitnumber\"   \"species\"    \n[11] \"length_1_mm\" \"length_2_mm\" \"weight_g\"    \"clip\"        \"sampledate\" \n[16] \"notes\"      \n\n\n\ntrout_salamander_py.columns\n\nIndex(['year', 'sitecode', 'section', 'reach', 'pass', 'unitnum', 'unittype',\n       'vert_index', 'pitnumber', 'species', 'length_1_mm', 'length_2_mm',\n       'weight_g', 'clip', 'sampledate', 'notes'],\n      dtype='object')\n\n\n\n\nThis column takes 1/2 of the page\nR Project\n\nnames(trout_salamander_R) # returns column names of a data frame\n\n [1] \"year\"        \"sitecode\"    \"section\"     \"reach\"       \"pass\"       \n [6] \"unitnum\"     \"unittype\"    \"vert_index\"  \"pitnumber\"   \"species\"    \n[11] \"length_1_mm\" \"length_2_mm\" \"weight_g\"    \"clip\"        \"sampledate\" \n[16] \"notes\"      \n\n\n\n\nThis column takes 1/2 of the page\nPython\n\ntrout_salamander_py.columns\n\nIndex(['year', 'sitecode', 'section', 'reach', 'pass', 'unitnum', 'unittype',\n       'vert_index', 'pitnumber', 'species', 'length_1_mm', 'length_2_mm',\n       'weight_g', 'clip', 'sampledate', 'notes'],\n      dtype='object')"
   },
   {
-    "objectID": "data_wrangling.html#mean-median-mode",
-    "href": "data_wrangling.html#mean-median-mode",
+    "objectID": "data_wrangling.html#r---ggplot",
+    "href": "data_wrangling.html#r---ggplot",
     "title": "Data Wrangling with R and Python",
-    "section": "mean, median, mode",
-    "text": "mean, median, mode"
+    "section": "R - ggplot",
+    "text": "R - ggplot\n\ntrout_salamander_R <- trout_salamander_R %>% \n  drop_na(species) %>% \n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander_R, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n\n\n\n\n\nFigure 1: figure in margin"
+  },
+  {
+    "objectID": "data_wrangling.html#python---matplotlib",
+    "href": "data_wrangling.html#python---matplotlib",
+    "title": "Data Wrangling with R and Python",
+    "section": "Python - matplotlib",
+    "text": "Python - matplotlib\n\nimport matplotlib.pyplot as plt\ntrout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')\nplt.show()\n\n\n\n\nFigure 2: caption in margin"
   },
   {
     "objectID": "data_wrangling.html#stats-of-a-group",
     "href": "data_wrangling.html#stats-of-a-group",
     "title": "Data Wrangling with R and Python",
     "section": "stats of a group",
-    "text": "stats of a group"
+    "text": "stats of a group\nxxx…add images of each species"
+  },
+  {
+    "objectID": "misc_layouts.html",
+    "href": "misc_layouts.html",
+    "title": "Miscellaneous Layouts",
+    "section": "",
+    "text": "Here is a warning.\n\nMore content.\n\n\nBlockquote\n\n\nlibrary(leaflet)\n\nWarning: package 'leaflet' was built under R version 4.1.2\n\nleaflet() %>%\n  addTiles() %>%  # Add default OpenStreetMap map tiles\n  addMarkers(lng=174.768, lat=-36.852, popup=\"The birthplace of R\")\n\n\n\n\n\nxxx\n\n\n\n\n\nLyra in front of flowers\n\n\n\nSome text for the margin\n\n\nplaying with layouts\n\n\nThis column takes 1/3 of the page\n\n\nThis column takes 2/3 of the page\n\n\nxxx"
   },
   {
     "objectID": "yaml_notes.html",

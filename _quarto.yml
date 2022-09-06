@@ -17,6 +17,8 @@ website:
         text: LTER Data Sampler
       - href: data_wrangling.qmd
         text: Data Wrangling Examples
+      - href: misc_layouts.qmd
+        text: Miscellaneous Layouts
       
 
 format:

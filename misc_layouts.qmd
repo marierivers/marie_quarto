@@ -1,0 +1,54 @@
+---
+title: "Miscellaneous Layouts"
+editor: visual
+---
+
+::: {.border}
+This content can be styled with a border
+:::
+
+::::: {#special .sidebar}
+
+::: {.warning}
+Here is a warning.
+:::
+
+More content.
+:::::
+
+> Blockquote
+
+```{r}
+#| column: screen-inset-shaded
+
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+```
+
+xxx 
+
+::: {.column-margin}
+![Lyra in front of flowers](images/lyra_flowers.jpg)
+
+:::
+
+::: {.column-margin}
+Some text for the margin
+:::
+
+# playing with layouts
+::: {.grid}
+
+::: {.g-col-4}
+This column takes 1/3 of the page
+:::
+
+::: {.g-col-8}
+This column takes 2/3 of the page
+:::
+
+:::
+
+xxx

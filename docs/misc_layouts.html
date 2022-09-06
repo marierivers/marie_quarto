@@ -3,8 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.243">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="3 year old Labrador Retriever">
-  <title>Quarto Explorations - Lyra</title>
+  <title>Quarto Explorations - Miscellaneous Layouts</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -12,6 +11,69 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,12 +113,21 @@
       "search-submit-button-title": "Submit"
     }
   }</script>
+  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+  <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+  <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+  <script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+  <script src="site_libs/leaflet-binding-2.1.1/leaflet.js"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -73,7 +144,7 @@
     <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lyra.html" aria-current="page">Lyra</a>
+    <a class="nav-link" href="./lyra.html">Lyra</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./recipes.html">Recipes</a>
@@ -85,7 +156,7 @@
     <a class="nav-link" href="./data_wrangling.html">Data Wrangling Examples</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./misc_layouts.html">Miscellaneous Layouts</a>
+    <a class="nav-link active" href="./misc_layouts.html" aria-current="page">Miscellaneous Layouts</a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -100,122 +171,68 @@
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#playing-with-layouts" id="toc-playing-with-layouts" class="nav-link active" data-scroll-target="#playing-with-layouts">playing with layouts</a></li>
+</ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<section id="content-above-formated-page-content-from-trestles-template" class="level3">
-<h3 class="anchored" data-anchor-id="content-above-formated-page-content-from-trestles-template">content above formated page content from <code>trestles</code> template</h3>
-</section>
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="lyra.jpg" class="about-image
-  rounded " style="width: 20em;">
+<main class="content page-columns page-full" id="quarto-document-content">
 <header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7">Lyra</h1><div class="quarto-description"><p>3 year old Labrador Retriever</p></div></div></header>
-  </div>
-  <div class="about-contents"><div id="lyra-heading">
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<ul>
-<li>puppy kindergarden</li>
-<li>obedience 1</li>
-<li>obedience 2</li>
-<li>advanced obedience</li>
-<li>intro to agility</li>
-</ul>
-</section>
-<section id="certifications" class="level2">
-<h2 class="anchored" data-anchor-id="certifications">Certifications</h2>
-<ul>
-<li>Canine Good Citizen</li>
-<li>Certified Very Good Girl</li>
-</ul>
-</section>
-<section id="favorite-activities" class="level2">
-<h2 class="anchored" data-anchor-id="favorite-activities">Favorite Activities</h2>
-<ul>
-<li>swimming</li>
-<li>fetch</li>
-<li>playing with friends</li>
-<li>running up and down the beach</li>
-<li>snack time</li>
-<li>snuggling</li>
-<li>waiting patiently while I load the dishwasher</li>
-</ul>
-<hr>
-</section>
+<div class="quarto-title"><h1 class="title display-7">Miscellaneous Layouts</h1></div></header>
+
+<div class="border">
+<p>This content can be styled with a border</p>
+</div>
+<div id="special" class="sidebar">
+<div class="warning">
+<p>Here is a warning.</p>
+</div>
+<p>More content.</p>
+</div>
+<blockquote class="blockquote">
+<p>Blockquote</p>
+</blockquote>
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'leaflet' was built under R version 4.1.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span>  <span class="co"># Add default OpenStreetMap map tiles</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng=</span><span class="fl">174.768</span>, <span class="at">lat=</span><span class="sc">-</span><span class="fl">36.852</span>, <span class="at">popup=</span><span class="st">"The birthplace of R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display column-screen-inset-shaded">
+<div id="htmlwidget-90ded1a471b660b8ef59" style="width:100%;height:464px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-90ded1a471b660b8ef59">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>xxx</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lyra_flowers.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Lyra in front of flowers</figcaption><p></p>
+</figure>
+</div>
+</div><div class="">
+<p>Some text for the margin</p>
 </div></div>
+<section id="playing-with-layouts" class="level1">
+<h1>playing with layouts</h1>
+<div class="grid">
+<div class="g-col-4">
+<p>This column takes 1/3 of the page</p>
 </div>
-
-<section id="content-below-template-formated-page-content-from-trestles-template" class="level3">
-<h3 class="anchored" data-anchor-id="content-below-template-formated-page-content-from-trestles-template">content below template formated page content from <code>trestles</code> template</h3>
-</section>
-<section id="figures-with-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="figures-with-quarto">Figures with Quarto</h3>
-<div class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-lake_sup" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/lyra_lake_paddleboard.jpg" class="img-fluid figure-img" data-ref-parent="fig-sup"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">(a) Paddle boarding on a lake</figcaption><p></p>
-</figure>
+<div class="g-col-8">
+<p>This column takes 2/3 of the page</p>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ocean_sup" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/lyra_ocean_paddleboard.jpg" class="img-fluid figure-img" data-ref-parent="fig-sup"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">(b) Paddle boarding on the ocean</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-lyra-snow" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/lyra_snow.jpg" class="img-fluid figure-img" data-ref-parent="fig-sup"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">(c) Playing in the snow</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-lyra-roses" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/lyra_rose_garden.jpg" class="img-fluid figure-img" data-ref-parent="fig-sup"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">(d) Smelling some roses</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Lyra is always ready for an adventure</figcaption><p></p>
-</figure>
-</div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>With figure layouts, it is important to have a blank line in your code between each picture</p>
-</div>
-</div>
-<div id="fig-friends" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/lyra_and_friends.jpg" class="img-fluid figure-img" width="375"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Lyra with her friends</figcaption><p></p>
-</figure>
-</div>
-<p>Notes: this pages tries out the <code>trestles</code> template and figure arrangements</p>
-
+<p>xxx</p>
 
 
 
