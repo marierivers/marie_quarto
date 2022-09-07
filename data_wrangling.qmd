@@ -140,46 +140,6 @@ unique(trout_salamander_R$species)
 trout_salamander_py.species.unique()
 ```
 
-# Visualizations
-
-## R - ggplot
-
-```{r}
-#| label: fig-trout_size
-#| fig-cap: "figure in margin"
-#| column: margin
-#| warning: false
-
-trout_salamander_R <- trout_salamander_R %>% 
-  drop_na(species) %>% 
-  filter(species != 'Cascade torrent salamander')
-
-species_names <- c('Cutthroat trout' = 'cutthroat trout',
-                   'Coastal giant salamander' = 'coastal giant salamander')
-
-section_names <- c('CC' = 'clear cut forest',
-                   'OG' = 'old growth coniferous forest')
-
-
-ggplot(data = trout_salamander_R, aes(x = length_1_mm, y = weight_g)) +
-  geom_point(aes(color = species), show.legend = FALSE) +
-  labs(x = "Length (mm)",
-       y = "Weight (g)",
-       color = "Species") +
-  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
-```
-
-## Python - matplotlib
-
-```{python}
-#| label: fig-cap-margin
-#| fig-cap: "caption in margin"
-#| cap-location: margin
-import matplotlib.pyplot as plt
-trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
-plt.show()
-```
-
 # Selecting Columns
 
 Subset a datafame based on columns of interst
@@ -341,11 +301,11 @@ There are `r format(round(num_large_trout), big.mark=',')` cutthroat trout longe
 
 # Summary Statistics
 
-
 ::: panel-tabset
 ## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
 
-### Mean 
+### Mean
+
 Mean of specified column
 
 ```{r}
@@ -399,6 +359,7 @@ max(trout_R$weight_g, na.rm = TRUE)
 ## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
 
 ### Mean
+
 Mean of specified column
 
 ```{python}
@@ -445,15 +406,99 @@ trout_py['weight_g'].max()
 
 **Use .var() to calculate the variance of a variable.**
 
-**Use .std() to calculate the standard deviation of a variable.** 
+**Use .std() to calculate the standard deviation of a variable.**
+:::
+
+# Grouped Statistics
+
+::: panel-tabset
+## `r fontawesome::fa("r-project", fill = "#5A5A5A", a11y = "sem")` R
+
+```{r}
+#| column: page-right
+#| message: false
+
+library(kableExtra)
+
+trout_salamander_R %>% 
+  drop_na(length_1_mm, weight_g) %>% 
+  group_by(sitecode, species) %>% 
+  summarise(mean_length = mean(length_1_mm),
+            min_length = min(length_1_mm),
+            max_lenth = max(length_1_mm),
+            mean_weight = mean(weight_g),
+            min_weight = min(weight_g),
+            max_weight = max(weight_g)) %>% 
+  kable(digits=2) %>% 
+  kable_paper()
+```
+
+## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
+
+```{python}
+#| column: page-right
+#| eval: false
+trout_salamander_py.dropna(subset=['length_1_mm', 'weight_g']) \
+.groupby(['sitecode', 'species'])[['length_1_mm', 'weight_g']] \
+.agg(['mean', 'min', 'max'])
+```
+
+```{python}
+#| column: page-right
+#| echo: false
+
+trout_salamander_py.dropna(subset=['length_1_mm', 'weight_g']) \
+.groupby(['sitecode', 'species'])[['length_1_mm', 'weight_g']] \
+.agg(['mean', 'min', 'max']) \
+.style.format(precision=2).set_table_styles([dict(selector="th", props=[("color", "black"),
+                               ("border", "1px solid black"),
+                               ("border-collapse", "collapse"),
+                               ('min-width', '80px'),
+                               ]),]) \
+                               .set_properties(**{'border': '1px solid black', 'color': 'black'})
+```
 
 :::
 
-# Grouping
+# Visualizations2
 
-## stats of a group
+## R - ggplot
 
-xxx...add images of each species
+```{r}
+#| warning: false
+#| label: fig-trout_sal_size1
+#| fig-cap: "length vs. weight visualized with ggplot and facet_grid"
+#| cap-location: margin
+
+trout_salamander_viz_R <- read_csv('data/and_vertebrates.csv') %>% 
+  drop_na(species) %>%
+  filter(species != 'Cascade torrent salamander')
+
+species_names <- c('Cutthroat trout' = 'cutthroat trout',
+                   'Coastal giant salamander' = 'coastal giant salamander')
+
+section_names <- c('CC' = 'clear cut forest',
+                   'OG' = 'old growth coniferous forest')
+
+
+ggplot(data = trout_salamander_viz_R, aes(x = length_1_mm, y = weight_g)) +
+  geom_point(aes(color = species), show.legend = FALSE) +
+  labs(x = "Length (mm)",
+       y = "Weight (g)",
+       color = "Species") +
+  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))
+```
+
+## Python - matplotlib
+
+```{python}
+#| label: fig-trout_sal_size2
+#| fig-cap: "length vs. weight visualized with matplotlib"
+#| cap-location: margin
+import matplotlib.pyplot as plt
+trout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')
+plt.show()
+```
 
 # Test
 
@@ -476,6 +521,14 @@ xxx...add images of each species
 1 + 1
 ```
 :::
+
+:::{.column-page-right}
+
+
+
+:::
+
+xxx...add images of each species
 
 xxxxx
 

@@ -113,6 +113,8 @@
       "search-submit-button-title": "Submit"
     }
   }</script>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -174,19 +176,16 @@
 <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names">Variable Names</a></li>
 </ul></li>
 <li><a href="#unique" id="toc-unique" class="nav-link" data-scroll-target="#unique">Unique</a></li>
-<li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a>
-<ul class="collapse">
-<li><a href="#r---ggplot" id="toc-r---ggplot" class="nav-link" data-scroll-target="#r---ggplot">R - ggplot</a></li>
-<li><a href="#python---matplotlib" id="toc-python---matplotlib" class="nav-link" data-scroll-target="#python---matplotlib">Python - matplotlib</a></li>
-</ul></li>
 <li><a href="#selecting-columns" id="toc-selecting-columns" class="nav-link" data-scroll-target="#selecting-columns">Selecting Columns</a></li>
 <li><a href="#new-columns" id="toc-new-columns" class="nav-link" data-scroll-target="#new-columns">New Columns</a></li>
 <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting">Sorting</a></li>
 <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
 <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
-<li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping">Grouping</a>
+<li><a href="#grouped-statistics" id="toc-grouped-statistics" class="nav-link" data-scroll-target="#grouped-statistics">Grouped Statistics</a></li>
+<li><a href="#visualizations2" id="toc-visualizations2" class="nav-link" data-scroll-target="#visualizations2">Visualizations2</a>
 <ul class="collapse">
-<li><a href="#stats-of-a-group" id="toc-stats-of-a-group" class="nav-link" data-scroll-target="#stats-of-a-group">stats of a group</a></li>
+<li><a href="#r---ggplot" id="toc-r---ggplot" class="nav-link" data-scroll-target="#r---ggplot">R - ggplot</a></li>
+<li><a href="#python---matplotlib" id="toc-python---matplotlib" class="nav-link" data-scroll-target="#python---matplotlib">Python - matplotlib</a></li>
 </ul></li>
 <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
 <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
@@ -491,55 +490,6 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 </div>
 </section>
-<section id="visualizations" class="level1 page-columns page-full">
-<h1>Visualizations</h1>
-<section id="r---ggplot" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="r---ggplot">R - ggplot</h2>
-<div class="cell page-columns page-full">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">'Cascade torrent salamander'</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>species_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Cutthroat trout'</span> <span class="ot">=</span> <span class="st">'cutthroat trout'</span>,</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Coastal giant salamander'</span> <span class="ot">=</span> <span class="st">'coastal giant salamander'</span>)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>section_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'CC'</span> <span class="ot">=</span> <span class="st">'clear cut forest'</span>,</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'OG'</span> <span class="ot">=</span> <span class="st">'old growth coniferous forest'</span>)</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trout_salamander_R, <span class="fu">aes</span>(<span class="at">x =</span> length_1_mm, <span class="at">y =</span> weight_g)) <span class="sc">+</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length (mm)"</span>,</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(section <span class="sc">~</span> species, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">section =</span> section_names, <span class="at">species =</span> species_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<div class="no-row-height column-margin column-container"><div class="cell-output-display">
-<div id="fig-trout_size" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="data_wrangling_files/figure-html/fig-trout_size-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: figure in margin</figcaption><p></p>
-</figure>
-</div>
-</div></div></div>
-</section>
-<section id="python---matplotlib" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="python---matplotlib">Python - matplotlib</h2>
-<div class="cell page-columns page-full">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.plot(x<span class="op">=</span><span class="st">'length_1_mm'</span>, y<span class="op">=</span><span class="st">'weight_g'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display page-columns page-full">
-<div id="fig-cap-margin" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="data_wrangling_files/figure-html/fig-cap-margin-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption margin-caption">Figure 2: caption in margin</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
 <section id="selecting-columns" class="level1 page-columns page-full">
 <h1>Selecting Columns</h1>
 <p>Subset a datafame based on columns of interst</p>
@@ -548,11 +498,11 @@ memory usage: 3.9+ MB</code></pre>
 <div class="tab-content page-columns page-full">
 <div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-1-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, sitecode, species, length_1_mm, weight_g)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, sitecode, species, length_1_mm, weight_g)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32,191 × 5
+<pre><code># A tibble: 32,209 × 5
     year sitecode species         length_1_mm weight_g
    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;
  1  1987 MACKCC-L Cutthroat trout          58     1.75
@@ -565,14 +515,14 @@ memory usage: 3.9+ MB</code></pre>
  8  1987 MACKCC-L Cutthroat trout         131    20.6 
  9  1987 MACKCC-L Cutthroat trout         103     9.55
 10  1987 MACKCC-L Cutthroat trout         117    13   
-# … with 32,181 more rows</code></pre>
+# … with 32,199 more rows</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-1-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py <span class="op">=</span> trout_salamander_py[[<span class="st">'year'</span>, <span class="st">'sitecode'</span>, <span class="st">'species'</span>, <span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py <span class="op">=</span> trout_salamander_py[[<span class="st">'year'</span>, <span class="st">'sitecode'</span>, <span class="st">'species'</span>, <span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]]</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode                   species  length_1_mm  weight_g
 0      1987  MACKCC-L           Cutthroat trout         58.0      1.75
@@ -592,8 +542,8 @@ memory usage: 3.9+ MB</code></pre>
 </div>
 <p>or…</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>cols_to_subset <span class="op">=</span> [<span class="st">'year'</span>, <span class="st">'sitecode'</span>, <span class="st">'species'</span>, <span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[cols_to_subset]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>cols_to_subset <span class="op">=</span> [<span class="st">'year'</span>, <span class="st">'sitecode'</span>, <span class="st">'species'</span>, <span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[cols_to_subset]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode                   species  length_1_mm  weight_g
 0      1987  MACKCC-L           Cutthroat trout         58.0      1.75
@@ -623,11 +573,11 @@ memory usage: 3.9+ MB</code></pre>
 <div class="tab-content page-columns page-full">
 <div id="tabset-2-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-2-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_1_in =</span> length_1_mm <span class="sc">/</span> <span class="fl">25.4</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_1_in =</span> length_1_mm <span class="sc">/</span> <span class="fl">25.4</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32,191 × 6
+<pre><code># A tibble: 32,209 × 6
     year sitecode species         length_1_mm weight_g length_1_in
    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
  1  1987 MACKCC-L Cutthroat trout          58     1.75        2.28
@@ -640,21 +590,14 @@ memory usage: 3.9+ MB</code></pre>
  8  1987 MACKCC-L Cutthroat trout         131    20.6         5.16
  9  1987 MACKCC-L Cutthroat trout         103     9.55        4.06
 10  1987 MACKCC-L Cutthroat trout         117    13           4.61
-# … with 32,181 more rows</code></pre>
+# … with 32,199 more rows</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-2-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[<span class="st">'length_1_in'</span>] <span class="op">=</span> trout_salamander_py[<span class="st">'length_1_mm'</span>] <span class="op">/</span> <span class="fl">25.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;string&gt;:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[<span class="st">'length_1_in'</span>] <span class="op">=</span> trout_salamander_py[<span class="st">'length_1_mm'</span>] <span class="op">/</span> <span class="fl">25.4</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode  ... weight_g  length_1_in
 0      1987  MACKCC-L  ...     1.75     2.283465
@@ -684,10 +627,10 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="tab-content page-columns page-full">
 <div id="tabset-3-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-3-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(length_1_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(length_1_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32,191 × 6
+<pre><code># A tibble: 32,209 × 6
     year sitecode species                  length_1_mm weight_g length_1_in
    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                          &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
  1  1999 MACKOG-L Coastal giant salamander          19    NA          0.748
@@ -700,13 +643,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
  8  2010 MACKCC-U Coastal giant salamander          20     0.49       0.787
  9  1994 MACKCC-L Coastal giant salamander          21     0.6        0.827
 10  1994 MACKOG-L Coastal giant salamander          21     0.4        0.827
-# … with 32,181 more rows</code></pre>
+# … with 32,199 more rows</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-3-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values(<span class="st">"length_1_mm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values(<span class="st">"length_1_mm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode  ... weight_g  length_1_in
 18543  2008  MACKCC-L  ...      NaN     0.748031
@@ -733,10 +676,10 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="tab-content page-columns page-full">
 <div id="tabset-4-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-4-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(length_1_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(length_1_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32,191 × 6
+<pre><code># A tibble: 32,209 × 6
     year sitecode species         length_1_mm weight_g length_1_in
    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
  1  2008 MACKCC-L Cutthroat trout         253     36.4        9.96
@@ -749,13 +692,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
  8  1992 MACKCC-M Cutthroat trout         194     66.9        7.64
  9  2009 MACKCC-L Cutthroat trout         194     67.0        7.64
 10  1992 MACKOG-M Cutthroat trout         193     61.1        7.60
-# … with 32,181 more rows</code></pre>
+# … with 32,199 more rows</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-4-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values(<span class="st">"length_1_mm"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values(<span class="st">"length_1_mm"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode  ... weight_g  length_1_in
 18450  2008  MACKCC-L  ...    36.40     9.960630
@@ -782,10 +725,10 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="tab-content page-columns page-full">
 <div id="tabset-5-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-5-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(length_1_mm, weight_g, year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(length_1_mm, weight_g, year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 32,191 × 6
+<pre><code># A tibble: 32,209 × 6
     year sitecode species                  length_1_mm weight_g length_1_in
    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                          &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
  1  1999 MACKOG-L Coastal giant salamander          19    NA          0.748
@@ -798,13 +741,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
  8  2007 MACKOG-M Coastal giant salamander          20    NA          0.787
  9  2012 MACKOG-U Coastal giant salamander          21     0.3        0.827
 10  2009 MACKOG-L Coastal giant salamander          21     0.31       0.827
-# … with 32,181 more rows</code></pre>
+# … with 32,199 more rows</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-5-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values([<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>, <span class="st">'year'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.sort_values([<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>, <span class="st">'year'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode  ... weight_g  length_1_in
 8994   1999  MACKOG-L  ...      NaN     0.748031
@@ -834,13 +777,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="tab-content page-columns page-full">
 <div id="tabset-6-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-6-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>trout_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Cutthroat trout'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>trout_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Cutthroat trout'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-6-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>trout_py <span class="op">=</span> trout_salamander_py[ (trout_salamander_py[<span class="st">'species'</span>] <span class="op">==</span> <span class="st">'Cutthroat trout'</span>) ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>trout_py <span class="op">=</span> trout_salamander_py[ (trout_salamander_py[<span class="st">'species'</span>] <span class="op">==</span> <span class="st">'Cutthroat trout'</span>) ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -851,10 +794,10 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="tab-content page-columns page-full">
 <div id="tabset-7-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-7-1-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>large_trout_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Cutthroat trout'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(length_1_mm <span class="sc">&gt;</span> <span class="dv">86</span>)</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>large_trout_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>large_trout_R <span class="ot">&lt;-</span> trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Cutthroat trout'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(length_1_mm <span class="sc">&gt;</span> <span class="dv">86</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>large_trout_R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,174 × 6
     year sitecode species         length_1_mm weight_g length_1_in
@@ -871,12 +814,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 10  1987 MACKCC-L Cutthroat trout         111    11.2         4.37
 # … with 10,164 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>num_large_trout <span class="ot">&lt;-</span> <span class="fu">nrow</span>(large_trout_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>num_large_trout <span class="ot">&lt;-</span> <span class="fu">nrow</span>(large_trout_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-7-2-tab">
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[ (trout_salamander_py[<span class="st">'species'</span>] <span class="op">==</span> <span class="st">'Cutthroat trout'</span>) <span class="op">&amp;</span> (trout_salamander_py[<span class="st">'length_1_mm'</span>] <span class="op">&gt;</span> <span class="dv">86</span>) ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py[ (trout_salamander_py[<span class="st">'species'</span>] <span class="op">==</span> <span class="st">'Cutthroat trout'</span>) <span class="op">&amp;</span> (trout_salamander_py[<span class="st">'length_1_mm'</span>] <span class="op">&gt;</span> <span class="dv">86</span>) ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       year  sitecode          species  length_1_mm  weight_g  length_1_in
 2      1987  MACKCC-L  Cutthroat trout         89.0      5.60     3.503937
@@ -909,16 +852,16 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <h3 class="anchored" data-anchor-id="mean">Mean</h3>
 <p>Mean of specified column</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.843599</code></pre>
 </div>
 </div>
 <p>Mean of multiple specified columns</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on multiple columns</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>trout_R <span class="sc">%&gt;%</span> </span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">vars</span>(<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on multiple columns</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>trout_R <span class="sc">%&gt;%</span> </span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">vars</span>(<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   length_1_mm weight_g
@@ -928,9 +871,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <p>Mean of all numeric columns</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on all numeric columns</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>trout_R <span class="sc">%&gt;%</span> </span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on all numeric columns</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>trout_R <span class="sc">%&gt;%</span> </span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
    year length_1_mm weight_g length_1_in
@@ -942,7 +885,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <section id="median" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="median">Median</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.15</code></pre>
 </div>
@@ -951,7 +894,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <section id="minimum" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="minimum">Minimum</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.09</code></pre>
 </div>
@@ -960,7 +903,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <section id="maximum" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="maximum">Maximum</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(trout_R<span class="sc">$</span>weight_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 104</code></pre>
 </div>
@@ -974,15 +917,15 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <h3 class="anchored" data-anchor-id="mean-1">Mean</h3>
 <p>Mean of specified column</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>8.84359853898682</code></pre>
 </div>
 </div>
 <p>Mean of multiple specified columns</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcuate statistic on multiple columns</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>trout_py[[<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcuate statistic on multiple columns</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>trout_py[[<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>length_1_mm    83.531330
 weight_g        8.843599
@@ -991,8 +934,8 @@ dtype: float64</code></pre>
 </div>
 <p>Mean of all numeric columns</p>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on all numeric columns</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>trout_py.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic on all numeric columns</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>trout_py.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>year           2003.527040
 length_1_mm      83.531330
@@ -1007,7 +950,7 @@ dtype: float64
 <section id="median-1" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="median-1">Median</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>6.15</code></pre>
 </div>
@@ -1016,7 +959,7 @@ dtype: float64
 <section id="minimum-1" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="minimum-1">Minimum</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.09</code></pre>
 </div>
@@ -1025,7 +968,7 @@ dtype: float64
 <section id="maximum-1" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="maximum-1">Maximum</h3>
 <div class="cell column-page-right">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>trout_py[<span class="st">'weight_g'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>104.0</code></pre>
 </div>
@@ -1037,19 +980,452 @@ dtype: float64
 </div>
 </div>
 </section>
-<section id="grouping" class="level1">
-<h1>Grouping</h1>
-<section id="stats-of-a-group" class="level2">
-<h2 class="anchored" data-anchor-id="stats-of-a-group">stats of a group</h2>
-<p>xxx…add images of each species</p>
+<section id="grouped-statistics" class="level1 page-columns page-full">
+<h1>Grouped Statistics</h1>
+<div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><svg aria-label="R Project" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>R Project</title><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><svg aria-label="Python" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>Python</title><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"></path></svg> Python</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-9-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-9-1-tab">
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>trout_salamander_R <span class="sc">%&gt;%</span> </span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(length_1_mm, weight_g) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sitecode, species) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(length_1_mm),</span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_length =</span> <span class="fu">min</span>(length_1_mm),</span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_lenth =</span> <span class="fu">max</span>(length_1_mm),</span>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_weight =</span> <span class="fu">mean</span>(weight_g),</span>
+<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_weight =</span> <span class="fu">min</span>(weight_g),</span>
+<span id="cb99-11"><a href="#cb99-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_weight =</span> <span class="fu">max</span>(weight_g)) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-12"><a href="#cb99-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-13"><a href="#cb99-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display column-page-right">
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> sitecode </th>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:right;"> mean_length </th>
+   <th style="text-align:right;"> min_length </th>
+   <th style="text-align:right;"> max_lenth </th>
+   <th style="text-align:right;"> mean_weight </th>
+   <th style="text-align:right;"> min_weight </th>
+   <th style="text-align:right;"> max_weight </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> MACKCC-L </td>
+   <td style="text-align:left;"> Cascade torrent salamander </td>
+   <td style="text-align:right;"> 36.80 </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:right;"> 1.32 </td>
+   <td style="text-align:right;"> 0.80 </td>
+   <td style="text-align:right;"> 1.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-L </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 59.09 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 143 </td>
+   <td style="text-align:right;"> 10.11 </td>
+   <td style="text-align:right;"> 0.29 </td>
+   <td style="text-align:right;"> 90.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-L </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 78.93 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 253 </td>
+   <td style="text-align:right;"> 7.73 </td>
+   <td style="text-align:right;"> 0.09 </td>
+   <td style="text-align:right;"> 66.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-M </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 58.08 </td>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:right;"> 137 </td>
+   <td style="text-align:right;"> 9.55 </td>
+   <td style="text-align:right;"> 0.58 </td>
+   <td style="text-align:right;"> 85.60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-M </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 93.11 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 197 </td>
+   <td style="text-align:right;"> 11.76 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 77.78 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-U </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 57.79 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 154 </td>
+   <td style="text-align:right;"> 9.53 </td>
+   <td style="text-align:right;"> 0.42 </td>
+   <td style="text-align:right;"> 102.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKCC-U </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 84.36 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 192 </td>
+   <td style="text-align:right;"> 9.14 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 65.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-L </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 53.54 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 172 </td>
+   <td style="text-align:right;"> 8.56 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 134.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-L </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 81.87 </td>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:right;"> 181 </td>
+   <td style="text-align:right;"> 8.50 </td>
+   <td style="text-align:right;"> 0.13 </td>
+   <td style="text-align:right;"> 63.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-M </td>
+   <td style="text-align:left;"> Cascade torrent salamander </td>
+   <td style="text-align:right;"> 29.00 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 0.73 </td>
+   <td style="text-align:right;"> 0.65 </td>
+   <td style="text-align:right;"> 0.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-M </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 54.02 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 155 </td>
+   <td style="text-align:right;"> 8.27 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 131.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-M </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 79.30 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:right;"> 193 </td>
+   <td style="text-align:right;"> 7.86 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 101.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-U </td>
+   <td style="text-align:left;"> Cascade torrent salamander </td>
+   <td style="text-align:right;"> 32.50 </td>
+   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 39 </td>
+   <td style="text-align:right;"> 0.85 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 1.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-U </td>
+   <td style="text-align:left;"> Coastal giant salamander </td>
+   <td style="text-align:right;"> 54.64 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 164 </td>
+   <td style="text-align:right;"> 8.20 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 134.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MACKOG-U </td>
+   <td style="text-align:left;"> Cutthroat trout </td>
+   <td style="text-align:right;"> 81.47 </td>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:right;"> 175 </td>
+   <td style="text-align:right;"> 8.29 </td>
+   <td style="text-align:right;"> 0.10 </td>
+   <td style="text-align:right;"> 104.00 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-9-2-tab">
+<div class="cell column-page-right">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.dropna(subset<span class="op">=</span>[<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]) <span class="op">\</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>.groupby([<span class="st">'sitecode'</span>, <span class="st">'species'</span>])[[<span class="st">'length_1_mm'</span>, <span class="st">'weight_g'</span>]] <span class="op">\</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>.agg([<span class="st">'mean'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-page-right">
+<style type="text/css">
+#T_4b496 th {
+  color: black;
+  border: 1px solid black;
+  border-collapse: collapse;
+  min-width: 80px;
+}
+#T_4b496_row0_col0, #T_4b496_row0_col1, #T_4b496_row0_col2, #T_4b496_row0_col3, #T_4b496_row0_col4, #T_4b496_row0_col5, #T_4b496_row1_col0, #T_4b496_row1_col1, #T_4b496_row1_col2, #T_4b496_row1_col3, #T_4b496_row1_col4, #T_4b496_row1_col5, #T_4b496_row2_col0, #T_4b496_row2_col1, #T_4b496_row2_col2, #T_4b496_row2_col3, #T_4b496_row2_col4, #T_4b496_row2_col5, #T_4b496_row3_col0, #T_4b496_row3_col1, #T_4b496_row3_col2, #T_4b496_row3_col3, #T_4b496_row3_col4, #T_4b496_row3_col5, #T_4b496_row4_col0, #T_4b496_row4_col1, #T_4b496_row4_col2, #T_4b496_row4_col3, #T_4b496_row4_col4, #T_4b496_row4_col5, #T_4b496_row5_col0, #T_4b496_row5_col1, #T_4b496_row5_col2, #T_4b496_row5_col3, #T_4b496_row5_col4, #T_4b496_row5_col5, #T_4b496_row6_col0, #T_4b496_row6_col1, #T_4b496_row6_col2, #T_4b496_row6_col3, #T_4b496_row6_col4, #T_4b496_row6_col5, #T_4b496_row7_col0, #T_4b496_row7_col1, #T_4b496_row7_col2, #T_4b496_row7_col3, #T_4b496_row7_col4, #T_4b496_row7_col5, #T_4b496_row8_col0, #T_4b496_row8_col1, #T_4b496_row8_col2, #T_4b496_row8_col3, #T_4b496_row8_col4, #T_4b496_row8_col5, #T_4b496_row9_col0, #T_4b496_row9_col1, #T_4b496_row9_col2, #T_4b496_row9_col3, #T_4b496_row9_col4, #T_4b496_row9_col5, #T_4b496_row10_col0, #T_4b496_row10_col1, #T_4b496_row10_col2, #T_4b496_row10_col3, #T_4b496_row10_col4, #T_4b496_row10_col5, #T_4b496_row11_col0, #T_4b496_row11_col1, #T_4b496_row11_col2, #T_4b496_row11_col3, #T_4b496_row11_col4, #T_4b496_row11_col5, #T_4b496_row12_col0, #T_4b496_row12_col1, #T_4b496_row12_col2, #T_4b496_row12_col3, #T_4b496_row12_col4, #T_4b496_row12_col5, #T_4b496_row13_col0, #T_4b496_row13_col1, #T_4b496_row13_col2, #T_4b496_row13_col3, #T_4b496_row13_col4, #T_4b496_row13_col5, #T_4b496_row14_col0, #T_4b496_row14_col1, #T_4b496_row14_col2, #T_4b496_row14_col3, #T_4b496_row14_col4, #T_4b496_row14_col5 {
+  border: 1px solid black;
+  color: black;
+}
+</style>
+<table id="T_4b496">
+  <thead>
+    <tr>
+      <th class="blank">&nbsp;</th>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_4b496_level0_col0" class="col_heading level0 col0" colspan="3">length_1_mm</th>
+      <th id="T_4b496_level0_col3" class="col_heading level0 col3" colspan="3">weight_g</th>
+    </tr>
+    <tr>
+      <th class="blank">&nbsp;</th>
+      <th class="blank level1">&nbsp;</th>
+      <th id="T_4b496_level1_col0" class="col_heading level1 col0">mean</th>
+      <th id="T_4b496_level1_col1" class="col_heading level1 col1">min</th>
+      <th id="T_4b496_level1_col2" class="col_heading level1 col2">max</th>
+      <th id="T_4b496_level1_col3" class="col_heading level1 col3">mean</th>
+      <th id="T_4b496_level1_col4" class="col_heading level1 col4">min</th>
+      <th id="T_4b496_level1_col5" class="col_heading level1 col5">max</th>
+    </tr>
+    <tr>
+      <th class="index_name level0">sitecode</th>
+      <th class="index_name level1">species</th>
+      <th class="blank col0">&nbsp;</th>
+      <th class="blank col1">&nbsp;</th>
+      <th class="blank col2">&nbsp;</th>
+      <th class="blank col3">&nbsp;</th>
+      <th class="blank col4">&nbsp;</th>
+      <th class="blank col5">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_4b496_level0_row0" class="row_heading level0 row0" rowspan="3">MACKCC-L</th>
+      <th id="T_4b496_level1_row0" class="row_heading level1 row0">Cascade torrent salamander</th>
+      <td id="T_4b496_row0_col0" class="data row0 col0">36.80</td>
+      <td id="T_4b496_row0_col1" class="data row0 col1">32.00</td>
+      <td id="T_4b496_row0_col2" class="data row0 col2">40.00</td>
+      <td id="T_4b496_row0_col3" class="data row0 col3">1.32</td>
+      <td id="T_4b496_row0_col4" class="data row0 col4">0.80</td>
+      <td id="T_4b496_row0_col5" class="data row0 col5">1.95</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row1" class="row_heading level1 row1">Coastal giant salamander</th>
+      <td id="T_4b496_row1_col0" class="data row1 col0">59.09</td>
+      <td id="T_4b496_row1_col1" class="data row1 col1">21.00</td>
+      <td id="T_4b496_row1_col2" class="data row1 col2">143.00</td>
+      <td id="T_4b496_row1_col3" class="data row1 col3">10.11</td>
+      <td id="T_4b496_row1_col4" class="data row1 col4">0.29</td>
+      <td id="T_4b496_row1_col5" class="data row1 col5">90.77</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row2" class="row_heading level1 row2">Cutthroat trout</th>
+      <td id="T_4b496_row2_col0" class="data row2 col0">78.93</td>
+      <td id="T_4b496_row2_col1" class="data row2 col1">24.00</td>
+      <td id="T_4b496_row2_col2" class="data row2 col2">253.00</td>
+      <td id="T_4b496_row2_col3" class="data row2 col3">7.73</td>
+      <td id="T_4b496_row2_col4" class="data row2 col4">0.09</td>
+      <td id="T_4b496_row2_col5" class="data row2 col5">66.97</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level0_row3" class="row_heading level0 row3" rowspan="2">MACKCC-M</th>
+      <th id="T_4b496_level1_row3" class="row_heading level1 row3">Coastal giant salamander</th>
+      <td id="T_4b496_row3_col0" class="data row3 col0">58.08</td>
+      <td id="T_4b496_row3_col1" class="data row3 col1">25.00</td>
+      <td id="T_4b496_row3_col2" class="data row3 col2">137.00</td>
+      <td id="T_4b496_row3_col3" class="data row3 col3">9.55</td>
+      <td id="T_4b496_row3_col4" class="data row3 col4">0.58</td>
+      <td id="T_4b496_row3_col5" class="data row3 col5">85.60</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row4" class="row_heading level1 row4">Cutthroat trout</th>
+      <td id="T_4b496_row4_col0" class="data row4 col0">93.11</td>
+      <td id="T_4b496_row4_col1" class="data row4 col1">27.00</td>
+      <td id="T_4b496_row4_col2" class="data row4 col2">197.00</td>
+      <td id="T_4b496_row4_col3" class="data row4 col3">11.76</td>
+      <td id="T_4b496_row4_col4" class="data row4 col4">0.10</td>
+      <td id="T_4b496_row4_col5" class="data row4 col5">77.78</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level0_row5" class="row_heading level0 row5" rowspan="2">MACKCC-U</th>
+      <th id="T_4b496_level1_row5" class="row_heading level1 row5">Coastal giant salamander</th>
+      <td id="T_4b496_row5_col0" class="data row5 col0">57.79</td>
+      <td id="T_4b496_row5_col1" class="data row5 col1">20.00</td>
+      <td id="T_4b496_row5_col2" class="data row5 col2">154.00</td>
+      <td id="T_4b496_row5_col3" class="data row5 col3">9.53</td>
+      <td id="T_4b496_row5_col4" class="data row5 col4">0.42</td>
+      <td id="T_4b496_row5_col5" class="data row5 col5">102.99</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row6" class="row_heading level1 row6">Cutthroat trout</th>
+      <td id="T_4b496_row6_col0" class="data row6 col0">84.36</td>
+      <td id="T_4b496_row6_col1" class="data row6 col1">26.00</td>
+      <td id="T_4b496_row6_col2" class="data row6 col2">192.00</td>
+      <td id="T_4b496_row6_col3" class="data row6 col3">9.14</td>
+      <td id="T_4b496_row6_col4" class="data row6 col4">0.10</td>
+      <td id="T_4b496_row6_col5" class="data row6 col5">65.00</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level0_row7" class="row_heading level0 row7" rowspan="2">MACKOG-L</th>
+      <th id="T_4b496_level1_row7" class="row_heading level1 row7">Coastal giant salamander</th>
+      <td id="T_4b496_row7_col0" class="data row7 col0">53.54</td>
+      <td id="T_4b496_row7_col1" class="data row7 col1">20.00</td>
+      <td id="T_4b496_row7_col2" class="data row7 col2">172.00</td>
+      <td id="T_4b496_row7_col3" class="data row7 col3">8.56</td>
+      <td id="T_4b496_row7_col4" class="data row7 col4">0.30</td>
+      <td id="T_4b496_row7_col5" class="data row7 col5">134.59</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row8" class="row_heading level1 row8">Cutthroat trout</th>
+      <td id="T_4b496_row8_col0" class="data row8 col0">81.87</td>
+      <td id="T_4b496_row8_col1" class="data row8 col1">25.00</td>
+      <td id="T_4b496_row8_col2" class="data row8 col2">181.00</td>
+      <td id="T_4b496_row8_col3" class="data row8 col3">8.50</td>
+      <td id="T_4b496_row8_col4" class="data row8 col4">0.13</td>
+      <td id="T_4b496_row8_col5" class="data row8 col5">63.00</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level0_row9" class="row_heading level0 row9" rowspan="3">MACKOG-M</th>
+      <th id="T_4b496_level1_row9" class="row_heading level1 row9">Cascade torrent salamander</th>
+      <td id="T_4b496_row9_col0" class="data row9 col0">29.00</td>
+      <td id="T_4b496_row9_col1" class="data row9 col1">28.00</td>
+      <td id="T_4b496_row9_col2" class="data row9 col2">30.00</td>
+      <td id="T_4b496_row9_col3" class="data row9 col3">0.73</td>
+      <td id="T_4b496_row9_col4" class="data row9 col4">0.65</td>
+      <td id="T_4b496_row9_col5" class="data row9 col5">0.80</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row10" class="row_heading level1 row10">Coastal giant salamander</th>
+      <td id="T_4b496_row10_col0" class="data row10 col0">54.02</td>
+      <td id="T_4b496_row10_col1" class="data row10 col1">21.00</td>
+      <td id="T_4b496_row10_col2" class="data row10 col2">155.00</td>
+      <td id="T_4b496_row10_col3" class="data row10 col3">8.27</td>
+      <td id="T_4b496_row10_col4" class="data row10 col4">0.30</td>
+      <td id="T_4b496_row10_col5" class="data row10 col5">131.50</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row11" class="row_heading level1 row11">Cutthroat trout</th>
+      <td id="T_4b496_row11_col0" class="data row11 col0">79.30</td>
+      <td id="T_4b496_row11_col1" class="data row11 col1">23.00</td>
+      <td id="T_4b496_row11_col2" class="data row11 col2">193.00</td>
+      <td id="T_4b496_row11_col3" class="data row11 col3">7.86</td>
+      <td id="T_4b496_row11_col4" class="data row11 col4">0.10</td>
+      <td id="T_4b496_row11_col5" class="data row11 col5">101.00</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level0_row12" class="row_heading level0 row12" rowspan="3">MACKOG-U</th>
+      <th id="T_4b496_level1_row12" class="row_heading level1 row12">Cascade torrent salamander</th>
+      <td id="T_4b496_row12_col0" class="data row12 col0">32.50</td>
+      <td id="T_4b496_row12_col1" class="data row12 col1">26.00</td>
+      <td id="T_4b496_row12_col2" class="data row12 col2">39.00</td>
+      <td id="T_4b496_row12_col3" class="data row12 col3">0.85</td>
+      <td id="T_4b496_row12_col4" class="data row12 col4">0.50</td>
+      <td id="T_4b496_row12_col5" class="data row12 col5">1.20</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row13" class="row_heading level1 row13">Coastal giant salamander</th>
+      <td id="T_4b496_row13_col0" class="data row13 col0">54.64</td>
+      <td id="T_4b496_row13_col1" class="data row13 col1">21.00</td>
+      <td id="T_4b496_row13_col2" class="data row13 col2">164.00</td>
+      <td id="T_4b496_row13_col3" class="data row13 col3">8.20</td>
+      <td id="T_4b496_row13_col4" class="data row13 col4">0.30</td>
+      <td id="T_4b496_row13_col5" class="data row13 col5">134.00</td>
+    </tr>
+    <tr>
+      <th id="T_4b496_level1_row14" class="row_heading level1 row14">Cutthroat trout</th>
+      <td id="T_4b496_row14_col0" class="data row14 col0">81.47</td>
+      <td id="T_4b496_row14_col1" class="data row14 col1">25.00</td>
+      <td id="T_4b496_row14_col2" class="data row14 col2">175.00</td>
+      <td id="T_4b496_row14_col3" class="data row14 col3">8.29</td>
+      <td id="T_4b496_row14_col4" class="data row14 col4">0.10</td>
+      <td id="T_4b496_row14_col5" class="data row14 col5">104.00</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizations2" class="level1 page-columns page-full">
+<h1>Visualizations2</h1>
+<section id="r---ggplot" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="r---ggplot">R - ggplot</h2>
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>trout_salamander_viz_R <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/and_vertebrates.csv'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">'Cascade torrent salamander'</span>)</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>species_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Cutthroat trout'</span> <span class="ot">=</span> <span class="st">'cutthroat trout'</span>,</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Coastal giant salamander'</span> <span class="ot">=</span> <span class="st">'coastal giant salamander'</span>)</span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a>section_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'CC'</span> <span class="ot">=</span> <span class="st">'clear cut forest'</span>,</span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'OG'</span> <span class="ot">=</span> <span class="st">'old growth coniferous forest'</span>)</span>
+<span id="cb101-10"><a href="#cb101-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-11"><a href="#cb101-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-12"><a href="#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trout_salamander_viz_R, <span class="fu">aes</span>(<span class="at">x =</span> length_1_mm, <span class="at">y =</span> weight_g)) <span class="sc">+</span></span>
+<span id="cb101-13"><a href="#cb101-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb101-14"><a href="#cb101-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length (mm)"</span>,</span>
+<span id="cb101-15"><a href="#cb101-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
+<span id="cb101-16"><a href="#cb101-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
+<span id="cb101-17"><a href="#cb101-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(section <span class="sc">~</span> species, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">section =</span> section_names, <span class="at">species =</span> species_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-trout_sal_size1" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="data_wrangling_files/figure-html/fig-trout_sal_size1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption margin-caption">Figure 1: length vs.&nbsp;weight visualized with ggplot and facet_grid</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="python---matplotlib" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="python---matplotlib">Python - matplotlib</h2>
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>trout_salamander_py.plot(x<span class="op">=</span><span class="st">'length_1_mm'</span>, y<span class="op">=</span><span class="st">'weight_g'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-trout_sal_size2" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="data_wrangling_files/figure-html/fig-trout_sal_size2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption margin-caption">Figure 2: length vs.&nbsp;weight visualized with matplotlib</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="test" class="level1 page-columns page-full">
 <h1>Test</h1>
 <div class="panel-tabset page-columns page-full">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Test 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Test 2</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Test 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Test 2</a></li></ul>
 <div class="tab-content page-columns page-full">
-<div id="tabset-9-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-9-1-tab">
+<div id="tabset-10-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-10-1-tab">
 <section id="nmvkzlsnvbszfnv" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="nmvkzlsnvbszfnv">nmvkzlsnvbszfnv</h3>
 <div class="cell column-page-right">
@@ -1060,7 +1436,7 @@ dtype: float64
 </div>
 </section>
 </div>
-<div id="tabset-9-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-9-2-tab">
+<div id="tabset-10-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-10-2-tab">
 <section id="vmkslbnsznb" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="vmkslbnsznb">vmkslbnsznb</h3>
 <div class="cell column-page-right">
@@ -1073,16 +1449,20 @@ dtype: float64
 </div>
 </div>
 </div>
+<div class="column-page-right">
+
+</div>
+<p>xxx…add images of each species</p>
 <p>xxxxx</p>
 <div class="panel-tabset page-columns page-full">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><svg aria-label="R Project" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>R Project</title><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><svg aria-label="Python" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>Python</title><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"></path></svg> Python</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true"><svg aria-label="R Project" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>R Project</title><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false"><svg aria-label="Python" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5A5A5A;overflow:visible;position:relative;"><title>Python</title><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"></path></svg> Python</a></li></ul>
 <div class="tab-content page-columns page-full">
-<div id="tabset-10-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-10-1-tab">
+<div id="tabset-11-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labeledby="tabset-11-1-tab">
 <div class="cell column-page-right">
 
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-10-2-tab">
+<div id="tabset-11-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labeledby="tabset-11-2-tab">
 <div class="cell column-page-right">
 
 </div>

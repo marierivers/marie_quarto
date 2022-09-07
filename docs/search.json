@@ -67,21 +67,14 @@
     "href": "data_wrangling.html#r---ggplot",
     "title": "Data Wrangling with R and Python",
     "section": "R - ggplot",
-    "text": "R - ggplot\n\ntrout_salamander_R <- trout_salamander_R %>% \n  drop_na(species) %>% \n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander_R, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n\n\n\n\n\nFigure 1: figure in margin"
+    "text": "R - ggplot\n\ntrout_salamander_viz_R <- read_csv('data/and_vertebrates.csv') %>% \n  drop_na(species) %>%\n  filter(species != 'Cascade torrent salamander')\n\nspecies_names <- c('Cutthroat trout' = 'cutthroat trout',\n                   'Coastal giant salamander' = 'coastal giant salamander')\n\nsection_names <- c('CC' = 'clear cut forest',\n                   'OG' = 'old growth coniferous forest')\n\n\nggplot(data = trout_salamander_viz_R, aes(x = length_1_mm, y = weight_g)) +\n  geom_point(aes(color = species), show.legend = FALSE) +\n  labs(x = \"Length (mm)\",\n       y = \"Weight (g)\",\n       color = \"Species\") +\n  facet_grid(section ~ species, labeller = labeller(section = section_names, species = species_names))\n\n\n\n\nFigure 1: length vs. weight visualized with ggplot and facet_grid"
   },
   {
     "objectID": "data_wrangling.html#python---matplotlib",
     "href": "data_wrangling.html#python---matplotlib",
     "title": "Data Wrangling with R and Python",
     "section": "Python - matplotlib",
-    "text": "Python - matplotlib\n\nimport matplotlib.pyplot as plt\ntrout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')\nplt.show()\n\n\n\n\nFigure 2: caption in margin"
-  },
-  {
-    "objectID": "data_wrangling.html#stats-of-a-group",
-    "href": "data_wrangling.html#stats-of-a-group",
-    "title": "Data Wrangling with R and Python",
-    "section": "stats of a group",
-    "text": "stats of a group\nxxx…add images of each species"
+    "text": "Python - matplotlib\n\nimport matplotlib.pyplot as plt\ntrout_salamander_py.plot(x='length_1_mm', y='weight_g', kind='scatter')\nplt.show()\n\n\n\n\nFigure 2: length vs. weight visualized with matplotlib"
   },
   {
     "objectID": "misc_layouts.html",
