@@ -82,6 +82,7 @@ Does anyone know how to show the code above but with an actual backtick at the b
 ## `r fontawesome::fa("python", fill = "#5A5A5A", a11y ="sem")` Python
 :::
 ```
+
 :::
 
 ::: panel-tabset
