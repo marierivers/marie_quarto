@@ -39,6 +39,7 @@ description: 3 year old Labrador Retriever
 - apples
 - peanut butter
 - cheese
+- does not like lemons, but she always forgets that
 
 ------------------------------------------------------------------------
 :::
