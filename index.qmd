@@ -12,7 +12,8 @@ about:
 
 ::: {#index-heading}
 ## This is a Quarto website.
-`r fontawesome::fa("tools", fill = "#5A5A5A", a11y = "sem")` using this space to try things out
+
+using this space to try things out
 
 ---
 
